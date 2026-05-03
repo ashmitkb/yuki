@@ -45,1763 +45,568 @@
     }
 
     @media (pointer: coarse) {
-      body {
-        cursor: auto;
-      }
+      body { cursor: auto; }
     }
 
     /* ─── CUSTOM CURSOR ─── */
     #cursor {
-      position: fixed;
-      z-index: 9999;
-      width: 10px;
-      height: 10px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
+      position: fixed; z-index: 9999;
+      width: 10px; height: 10px;
+      background: var(--gold); border-radius: 50%;
+      pointer-events: none; transform: translate(-50%, -50%);
       transition: transform 0.1s, width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo), background 0.3s;
       mix-blend-mode: difference;
     }
-
     #cursor-ring {
-      position: fixed;
-      z-index: 9998;
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(201, 169, 110, 0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
+      position: fixed; z-index: 9998;
+      width: 38px; height: 38px;
+      border: 1px solid rgba(201, 169, 110, 0.5); border-radius: 50%;
+      pointer-events: none; transform: translate(-50%, -50%);
       transition: transform 0.08s, width 0.4s var(--ease-out-expo), height 0.4s var(--ease-out-expo), opacity 0.3s;
     }
-
-    body:has(a:hover) #cursor,
-    body:has(button:hover) #cursor {
-      width: 20px;
-      height: 20px;
-    }
-
-    body:has(a:hover) #cursor-ring,
-    body:has(button:hover) #cursor-ring {
-      width: 60px;
-      height: 60px;
-      opacity: 0.4;
-    }
-
-    @media (pointer: coarse) {
-
-      #cursor,
-      #cursor-ring {
-        display: none;
-      }
-    }
+    body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 20px; height: 20px; }
+    body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 60px; height: 60px; opacity: 0.4; }
+    @media (pointer: coarse) { #cursor, #cursor-ring { display: none; } }
 
     /* ─── LOADER ─── */
     #loader {
-      position: fixed;
-      inset: 0;
-      z-index: 9000;
+      position: fixed; inset: 0; z-index: 9000;
       background: var(--ink);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 24px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
     }
-
     #loader .l-text {
       font-family: 'Cinzel', serif;
       font-size: clamp(2rem, 6vw, 5rem);
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      overflow: hidden;
+      letter-spacing: 0.5em; color: var(--gold); overflow: hidden;
     }
-
     #loader .l-text span {
-      display: inline-block;
-      transform: translateY(110%);
+      display: inline-block; transform: translateY(110%);
       animation: loaderReveal 1.2s var(--ease-out-expo) forwards;
     }
-
-    @keyframes loaderReveal {
-      to {
-        transform: translateY(0);
-      }
-    }
-
+    @keyframes loaderReveal { to { transform: translateY(0); } }
     #loader .l-line {
-      width: 0;
-      height: 1px;
-      background: var(--gold-dim);
+      width: 0; height: 1px; background: var(--gold-dim);
       animation: loaderLine 1.4s 0.6s var(--ease-out-expo) forwards;
     }
-
-    @keyframes loaderLine {
-      to {
-        width: 120px;
-      }
-    }
-
+    @keyframes loaderLine { to { width: 120px; } }
     #loader .l-sub {
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-      opacity: 0;
+      font-size: 0.65rem; letter-spacing: 0.4em; color: var(--gold-dim);
+      text-transform: uppercase; opacity: 0;
       animation: fadeIn 0.8s 1.2s ease forwards;
     }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
     /* ─── NAV ─── */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 28px 48px;
       transition: padding 0.4s ease, background 0.4s ease;
     }
-
     nav.scrolled {
       padding: 18px 48px;
       background: rgba(10, 10, 8, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(201, 169, 110, 0.1);
     }
-
     .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.35em;
-      color: var(--gold);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      position: relative;
-      z-index: 1100;
+      font-family: 'Cinzel', serif; font-size: 1.1rem;
+      letter-spacing: 0.35em; color: var(--gold); text-decoration: none;
+      display: flex; align-items: center; position: relative; z-index: 1100;
     }
-
     .nav-logo .logo-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--gold-dim);
-      border-radius: 50%;
-      margin-right: 14px;
-      font-size: 0.85rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border: 1px solid var(--gold-dim);
+      border-radius: 50%; margin-right: 14px; font-size: 0.85rem;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-
+    .nav-links { display: flex; gap: 40px; align-items: center; }
     .nav-links a {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(245, 240, 232, 0.7);
-      text-decoration: none;
-      transition: color 0.3s;
-      position: relative;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.7); text-decoration: none;
+      transition: color 0.3s; position: relative;
     }
-
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: right;
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: right;
       transition: transform 0.3s var(--ease-out-expo);
     }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
-    .nav-links a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
     .nav-reserve {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: var(--gold);
-      padding: 12px 28px;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--ink); background: var(--gold); padding: 12px 28px;
+      text-decoration: none; transition: background 0.3s, transform 0.3s;
+      display: flex; align-items: center; gap: 8px;
     }
-
-    .nav-reserve:hover {
-      background: var(--gold-light);
-      transform: translateX(3px);
-    }
+    .nav-reserve:hover { background: var(--gold-light); transform: translateX(3px); }
 
     /* ─── HAMBURGER ─── */
     .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1100;
-      position: relative;
-      padding: 4px 0;
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      z-index: 1100; position: relative; padding: 4px 0;
     }
-
     .ham-line {
-      display: block;
-      width: 26px;
-      height: 1px;
-      background: var(--gold);
+      display: block; width: 26px; height: 1px; background: var(--gold);
       transform-origin: center;
       transition: transform 0.4s var(--ease-out-expo), opacity 0.3s, width 0.4s;
     }
-
-    .nav-hamburger.open .ham-line:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .nav-hamburger.open .ham-line:nth-child(2) {
-      opacity: 0;
-      width: 0;
-    }
-
-    .nav-hamburger.open .ham-line:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
+    .nav-hamburger.open .ham-line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open .ham-line:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.open .ham-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
     /* ─── MOBILE MENU ─── */
     #mobile-menu {
-      position: fixed;
-      inset: 0;
-      z-index: 1050;
-      background: var(--ink);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      position: fixed; inset: 0; z-index: 1050; background: var(--ink);
+      display: flex; flex-direction: column; justify-content: center;
       padding: 100px 40px 60px;
       clip-path: circle(0% at calc(100% - 52px) 52px);
       transition: clip-path 0.8s var(--ease-out-expo);
-      pointer-events: none;
-      overflow: hidden;
+      pointer-events: none; overflow: hidden;
     }
-
-    #mobile-menu.open {
-      clip-path: circle(160% at calc(100% - 52px) 52px);
-      pointer-events: all;
-    }
-
+    #mobile-menu.open { clip-path: circle(160% at calc(100% - 52px) 52px); pointer-events: all; }
     .mob-link {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2rem, 8vw, 3rem);
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      color: var(--cream);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(201, 169, 110, 0.08);
-      opacity: 0;
-      transform: translateX(-30px);
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 300; letter-spacing: 0.06em; color: var(--cream);
+      text-decoration: none; display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+      opacity: 0; transform: translateX(-30px);
       transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo), color 0.3s;
     }
-
-    #mobile-menu.open .mob-link {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    #mobile-menu.open .mob-link:nth-child(1) {
-      transition-delay: 0.15s;
-    }
-
-    #mobile-menu.open .mob-link:nth-child(2) {
-      transition-delay: 0.22s;
-    }
-
-    #mobile-menu.open .mob-link:nth-child(3) {
-      transition-delay: 0.29s;
-    }
-
-    #mobile-menu.open .mob-link:nth-child(4) {
-      transition-delay: 0.36s;
-    }
-
-    #mobile-menu.open .mob-link:nth-child(5) {
-      transition-delay: 0.43s;
-    }
-
-    .mob-link:hover {
-      color: var(--gold);
-    }
-
-    .mob-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.8rem;
-      font-style: italic;
-      color: var(--gold-dim);
-    }
-
+    #mobile-menu.open .mob-link { opacity: 1; transform: translateX(0); }
+    #mobile-menu.open .mob-link:nth-child(1) { transition-delay: 0.15s; }
+    #mobile-menu.open .mob-link:nth-child(2) { transition-delay: 0.22s; }
+    #mobile-menu.open .mob-link:nth-child(3) { transition-delay: 0.29s; }
+    #mobile-menu.open .mob-link:nth-child(4) { transition-delay: 0.36s; }
+    #mobile-menu.open .mob-link:nth-child(5) { transition-delay: 0.43s; }
+    .mob-link:hover { color: var(--gold); }
+    .mob-num { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; font-style: italic; color: var(--gold-dim); }
     .mob-footer {
-      margin-top: 44px;
-      opacity: 0;
-      transform: translateY(16px);
+      margin-top: 44px; opacity: 0; transform: translateY(16px);
       transition: opacity 0.5s 0.5s ease, transform 0.5s 0.5s var(--ease-out-expo);
     }
-
-    #mobile-menu.open .mob-footer {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    #mobile-menu.open .mob-footer { opacity: 1; transform: translateY(0); }
     .mob-reserve {
-      display: inline-block;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: var(--gold);
-      padding: 16px 36px;
-      text-decoration: none;
-      margin-bottom: 24px;
+      display: inline-block; font-size: 0.65rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--ink); background: var(--gold);
+      padding: 16px 36px; text-decoration: none; margin-bottom: 24px;
     }
-
-    .mob-contact {
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      color: var(--gold-dim);
-    }
+    .mob-contact { font-size: 0.68rem; letter-spacing: 0.12em; color: var(--gold-dim); }
 
     /* ─── HERO ─── */
     #hero {
-      position: relative;
-      height: 100vh;
-      min-height: 700px;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; overflow: hidden;
     }
 
+    /* ── hero bg: image lives HERE, parallax applied via JS ── */
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
+      background: url('bgimg.png') 30% center / cover no-repeat;
       will-change: transform;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
 
-    /* Actual photo — never scaled, full quality */
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('bgimg.png') 30% center/cover no-repeat;
-      transform: translateZ(0);
-    }
-
-    /* Grain overlay */
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.3;
-    }
-
+    /* dark overlays on top of the image */
     .hero-vignette {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
         linear-gradient(to right, rgba(10, 8, 4, 0.6) 0%, rgba(10, 8, 4, 0.2) 60%, transparent 100%),
         radial-gradient(ellipse at center, transparent 30%, rgba(10, 10, 8, 0.35) 100%);
       pointer-events: none;
     }
-
     .hero-gradient {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 45%;
+      position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
       background: linear-gradient(to top, var(--ink) 0%, rgba(10, 10, 8, 0.5) 60%, transparent 100%);
     }
 
     .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 48px 80px;
-      width: 100%;
+      position: relative; z-index: 2;
+      padding: 0 48px 80px; width: 100%;
     }
-
     .hero-tag {
-      font-size: 0.6rem;
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-      opacity: 0;
-      transform: translateY(20px);
+      font-size: 0.6rem; letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 24px; opacity: 0; transform: translateY(20px);
       text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
     }
-
     .hero-title {
       font-family: 'Cinzel', serif;
       font-size: clamp(5rem, 15vw, 14rem);
-      font-weight: 300;
-      line-height: 0.85;
-      letter-spacing: 0.05em;
-      color: var(--gold);
-      text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
-      opacity: 0;
+      font-weight: 300; line-height: 0.85; letter-spacing: 0.05em;
+      color: var(--gold); text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+      overflow: hidden; opacity: 0;
     }
-
-    .hero-title .word {
-      display: block;
-      transform: translateY(110%);
-    }
-
+    .hero-title .word { display: block; transform: translateY(110%); }
     .hero-sub {
-      display: flex;
-      gap: 48px;
-      align-items: center;
-      margin-top: 32px;
-      opacity: 0;
-      transform: translateY(20px);
+      display: flex; gap: 48px; align-items: center;
+      margin-top: 32px; opacity: 0; transform: translateY(20px);
     }
-
     .hero-sub-text {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: rgba(245, 240, 232, 0.85);
-      text-transform: uppercase;
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      color: rgba(245, 240, 232, 0.85); text-transform: uppercase;
       text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
     }
-
-    .hero-line {
-      flex: 1;
-      height: 1px;
-      background: rgba(201, 169, 110, 0.2);
-      max-width: 200px;
-    }
-
+    .hero-line { flex: 1; height: 1px; background: rgba(201, 169, 110, 0.2); max-width: 200px; }
     .hero-scroll {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.6rem; letter-spacing: 0.3em; color: var(--gold-dim); text-transform: uppercase;
     }
-
     .scroll-arrow {
-      width: 20px;
-      height: 20px;
-      border-right: 1px solid var(--gold-dim);
-      border-bottom: 1px solid var(--gold-dim);
-      transform: rotate(45deg);
-      animation: scrollBounce 2s ease-in-out infinite;
+      width: 20px; height: 20px;
+      border-right: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim);
+      transform: rotate(45deg); animation: scrollBounce 2s ease-in-out infinite;
     }
-
     @keyframes scrollBounce {
-
-      0%,
-      100% {
-        transform: rotate(45deg) translate(0, 0);
-        opacity: 1;
-      }
-
-      50% {
-        transform: rotate(45deg) translate(4px, 4px);
-        opacity: 0.5;
-      }
+      0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 1; }
+      50% { transform: rotate(45deg) translate(4px, 4px); opacity: 0.5; }
     }
-
     .hero-number {
-      position: absolute;
-      right: 48px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      color: var(--gold-dim);
-      writing-mode: vertical-rl;
-      z-index: 2;
+      position: absolute; right: 48px; top: 50%; transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif; font-size: 0.65rem;
+      letter-spacing: 0.3em; color: var(--gold-dim); writing-mode: vertical-rl; z-index: 2;
     }
 
     /* ─── MARQUEE ─── */
     .marquee-section {
-      padding: 40px 0;
-      overflow: hidden;
+      padding: 40px 0; overflow: hidden;
       border-top: 1px solid rgba(201, 169, 110, 0.1);
       border-bottom: 1px solid rgba(201, 169, 110, 0.1);
       background: rgba(201, 169, 110, 0.03);
     }
-
     .marquee-track {
-      display: flex;
-      gap: 60px;
-      white-space: nowrap;
+      display: flex; gap: 60px; white-space: nowrap;
       animation: marquee 25s linear infinite;
     }
-
-    .marquee-track:hover {
-      animation-play-state: paused;
-    }
-
+    .marquee-track:hover { animation-play-state: paused; }
     .marquee-item {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
-      font-style: italic;
-      letter-spacing: 0.2em;
-      color: var(--gold-dim);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      gap: 60px;
+      font-family: 'Cormorant Garamond', serif; font-size: 0.95rem;
+      font-style: italic; letter-spacing: 0.2em; color: var(--gold-dim);
+      flex-shrink: 0; display: flex; align-items: center; gap: 60px;
     }
-
-    .marquee-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex-shrink: 0;
-    }
-
-    @keyframes marquee {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(-50%);
-      }
-    }
+    .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* ─── SECTIONS COMMON ─── */
-    section {
-      position: relative;
-    }
-
+    section { position: relative; }
     .section-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      font-size: 0.55rem; letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 16px;
     }
-
-    .section-label::before {
-      content: '';
-      display: block;
-      width: 30px;
-      height: 1px;
-      background: var(--gold);
-    }
+    .section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
 
     /* ─── PHILOSOPHY ─── */
     #philosophy {
-      padding: 140px 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+      padding: 140px 48px; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
-
     .philosophy-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--cream);
-      margin-bottom: 40px;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 40px;
     }
-
-    .philosophy-heading em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
+    .philosophy-heading em { font-style: italic; color: var(--gold); }
     .philosophy-body {
-      font-size: 0.85rem;
-      line-height: 2;
-      color: rgba(245, 240, 232, 0.55);
-      margin-bottom: 40px;
-      max-width: 420px;
+      font-size: 0.85rem; line-height: 2; color: rgba(245, 240, 232, 0.55);
+      margin-bottom: 40px; max-width: 420px;
     }
-
     .text-link {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      transition: gap 0.3s;
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 12px; transition: gap 0.3s;
     }
-
-    .text-link::after {
-      content: '→';
-    }
-
-    .text-link:hover {
-      gap: 20px;
-    }
-
-    .philosophy-right {
-      position: relative;
-    }
-
+    .text-link::after { content: '→'; }
+    .text-link:hover { gap: 20px; }
+    .philosophy-right { position: relative; }
     .philosophy-image {
-      width: 100%;
-      aspect-ratio: 3/4;
-      position: relative;
-      overflow: hidden;
-      background: url('cuisine.png') center/cover no-repeat;
+      width: 100%; aspect-ratio: 3/4; position: relative; overflow: hidden;
+      background: url('cuisine.png') center / cover no-repeat;
     }
-
     .philosophy-image::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: linear-gradient(to bottom, transparent 60%, rgba(10, 10, 8, 0.4) 100%);
     }
-
     .philosophy-image-accent {
-      position: absolute;
-      bottom: -20px;
-      left: -20px;
-      width: 60%;
-      aspect-ratio: 1;
-      border: 1px solid rgba(201, 169, 110, 0.15);
-      pointer-events: none;
+      position: absolute; bottom: -20px; left: -20px;
+      width: 60%; aspect-ratio: 1;
+      border: 1px solid rgba(201, 169, 110, 0.15); pointer-events: none;
     }
-
     .philosophy-stat {
-      position: absolute;
-      top: 40px;
-      left: -60px;
-      background: rgba(10, 10, 8, 0.9);
-      border: 1px solid rgba(201, 169, 110, 0.2);
-      padding: 24px 32px;
-      backdrop-filter: blur(10px);
+      position: absolute; top: 40px; left: -60px;
+      background: rgba(10, 10, 8, 0.9); border: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 24px 32px; backdrop-filter: blur(10px);
     }
-
-    .stat-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-top: 6px;
-    }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); margin-top: 6px; }
 
     /* ─── MENU ─── */
-    #menu {
-      padding: 80px 0;
-      overflow: hidden;
-    }
-
-    .menu-intro {
-      padding: 0 48px;
-      margin-bottom: 80px;
-    }
-
+    #menu { padding: 80px 0; overflow: hidden; }
+    .menu-intro { padding: 0 48px; margin-bottom: 80px; }
     .menu-heading {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(3rem, 7vw, 6rem);
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 24px;
+      font-family: 'Cinzel', serif; font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300; letter-spacing: 0.08em; color: var(--cream); line-height: 1; margin-bottom: 24px;
     }
-
-    .menu-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-
-    .menu-card {
-      position: relative;
-      aspect-ratio: 3/4;
-      overflow: hidden;
-      cursor: none;
-    }
-
-    .menu-card-bg {
-      position: absolute;
-      inset: 0;
-      transition: transform 0.7s var(--ease-out-expo);
-    }
-
-    .menu-card:nth-child(1) .menu-card-bg {
-      background: linear-gradient(160deg, #1a1005 0%, #0a0f08 100%);
-    }
-
-    .menu-card:nth-child(2) .menu-card-bg {
-      background: linear-gradient(160deg, #0d1a12 0%, #0a0a0f 100%);
-    }
-
-    .menu-card:nth-child(3) .menu-card-bg {
-      background: linear-gradient(160deg, #1a0d0d 0%, #0a0f15 100%);
-    }
-
-    .menu-card:hover .menu-card-bg {
-      transform: scale(1.05);
-    }
-
+    .menu-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .menu-card { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: none; }
+    .menu-card-bg { position: absolute; inset: 0; transition: transform 0.7s var(--ease-out-expo); }
+    .menu-card:nth-child(1) .menu-card-bg { background: linear-gradient(160deg, #1a1005 0%, #0a0f08 100%); }
+    .menu-card:nth-child(2) .menu-card-bg { background: linear-gradient(160deg, #0d1a12 0%, #0a0a0f 100%); }
+    .menu-card:nth-child(3) .menu-card-bg { background: linear-gradient(160deg, #1a0d0d 0%, #0a0f15 100%); }
+    .menu-card:hover .menu-card-bg { transform: scale(1.05); }
     .menu-card-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(10, 10, 8, 0.95) 0%, rgba(10, 10, 8, 0.2) 100%);
       transition: background 0.5s;
     }
-
     .menu-card-visual {
-      position: absolute;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      color: rgba(201, 169, 110, 0.2);
+      position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+      width: 140px; height: 140px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.5rem; letter-spacing: 0.2em; color: rgba(201, 169, 110, 0.2);
       border: 1px solid rgba(201, 169, 110, 0.1);
       transition: transform 0.5s var(--ease-out-expo);
     }
-
-    .menu-card:hover .menu-card-visual {
-      transform: translateX(-50%) scale(1.08);
-    }
-
-    .menu-card:nth-child(1) .menu-card-visual {
-      background: radial-gradient(ellipse, rgba(201, 120, 50, 0.15) 0%, transparent 70%);
-    }
-
-    .menu-card:nth-child(2) .menu-card-visual {
-      background: radial-gradient(ellipse, rgba(50, 150, 80, 0.12) 0%, transparent 70%);
-    }
-
-    .menu-card:nth-child(3) .menu-card-visual {
-      background: radial-gradient(ellipse, rgba(50, 80, 201, 0.12) 0%, transparent 70%);
-    }
-
+    .menu-card:hover .menu-card-visual { transform: translateX(-50%) scale(1.08); }
+    .menu-card:nth-child(1) .menu-card-visual { background: radial-gradient(ellipse, rgba(201, 120, 50, 0.15) 0%, transparent 70%); }
+    .menu-card:nth-child(2) .menu-card-visual { background: radial-gradient(ellipse, rgba(50, 150, 80, 0.12) 0%, transparent 70%); }
+    .menu-card:nth-child(3) .menu-card-visual { background: radial-gradient(ellipse, rgba(50, 80, 201, 0.12) 0%, transparent 70%); }
     .menu-card-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 40px 32px;
-      transform: translateY(20px);
-      transition: transform 0.5s var(--ease-out-expo);
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 32px;
+      transform: translateY(20px); transition: transform 0.5s var(--ease-out-expo);
     }
-
-    .menu-card:hover .menu-card-content {
-      transform: translateY(0);
-    }
-
-    .menu-card-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.75rem;
-      font-style: italic;
-      color: var(--gold-dim);
-      margin-bottom: 12px;
-    }
-
-    .menu-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 300;
-      color: var(--cream);
-      margin-bottom: 8px;
-      line-height: 1.1;
-    }
-
+    .menu-card:hover .menu-card-content { transform: translateY(0); }
+    .menu-card-number { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; font-style: italic; color: var(--gold-dim); margin-bottom: 12px; }
+    .menu-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--cream); margin-bottom: 8px; line-height: 1.1; }
     .menu-card-desc {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      color: rgba(245, 240, 232, 0.4);
-      line-height: 1.8;
-      opacity: 0;
-      transform: translateY(10px);
+      font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(245, 240, 232, 0.4);
+      line-height: 1.8; opacity: 0; transform: translateY(10px);
       transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
     }
-
-    .menu-card:hover .menu-card-desc {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .menu-card-price {
-      margin-top: 20px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--gold);
-    }
+    .menu-card:hover .menu-card-desc { opacity: 1; transform: translateY(0); }
+    .menu-card-price { margin-top: 20px; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); }
 
     /* ─── EXPERIENCE ─── */
-    #experience {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .exp-visual {
-      position: relative;
-      overflow: hidden;
-    }
-
+    #experience { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+    .exp-visual { position: relative; overflow: hidden; }
     .exp-visual-inner {
-      position: absolute;
-      inset: -20%;
+      position: absolute; inset: -20%;
       background: radial-gradient(ellipse at 40% 50%, rgba(139, 90, 43, 0.2) 0%, transparent 60%),
         linear-gradient(135deg, #15100a 0%, #0a150d 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.55rem;
-      letter-spacing: 0.3em;
-      color: rgba(201, 169, 110, 0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.55rem; letter-spacing: 0.3em; color: rgba(201, 169, 110, 0.1);
     }
-
-    .exp-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 120px 80px;
-    }
-
+    .exp-content { display: flex; flex-direction: column; justify-content: center; padding: 120px 80px; }
     .exp-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.5;
-      color: var(--cream);
-      margin-bottom: 48px;
-      position: relative;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 300; font-style: italic; line-height: 1.5; color: var(--cream);
+      margin-bottom: 48px; position: relative;
     }
-
     .exp-quote::before {
-      content: '"';
-      position: absolute;
-      top: -40px;
-      left: -20px;
-      font-size: 8rem;
-      color: rgba(201, 169, 110, 0.07);
-      font-family: 'Cormorant Garamond', serif;
-      line-height: 1;
+      content: '"'; position: absolute; top: -40px; left: -20px;
+      font-size: 8rem; color: rgba(201, 169, 110, 0.07);
+      font-family: 'Cormorant Garamond', serif; line-height: 1;
     }
-
-    .exp-attribution {
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-    }
-
-    .exp-features {
-      margin-top: 64px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .exp-feature-icon {
-      width: 28px;
-      height: 28px;
-      margin-bottom: 16px;
-      opacity: 0.6;
-    }
-
-    .exp-feature-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--cream);
-      margin-bottom: 8px;
-    }
-
-    .exp-feature-desc {
-      font-size: 0.7rem;
-      line-height: 1.8;
-      color: rgba(245, 240, 232, 0.4);
-      letter-spacing: 0.05em;
-    }
+    .exp-attribution { font-size: 0.6rem; letter-spacing: 0.3em; color: var(--gold-dim); text-transform: uppercase; }
+    .exp-features { margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .exp-feature-icon { width: 28px; height: 28px; margin-bottom: 16px; opacity: 0.6; }
+    .exp-feature-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; color: var(--cream); margin-bottom: 8px; }
+    .exp-feature-desc { font-size: 0.7rem; line-height: 1.8; color: rgba(245, 240, 232, 0.4); letter-spacing: 0.05em; }
 
     /* ─── TASTING ─── */
-    #tasting {
-      padding: 140px 48px;
-      position: relative;
-    }
-
-    .tasting-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 80px;
-    }
-
-    .tasting-heading {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--cream);
-      line-height: 1;
-    }
-
+    #tasting { padding: 140px 48px; position: relative; }
+    .tasting-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; }
+    .tasting-heading { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; letter-spacing: 0.08em; color: var(--cream); line-height: 1; }
     .course-item {
-      display: grid;
-      grid-template-columns: 60px 1fr auto;
-      align-items: center;
-      gap: 40px;
-      padding: 32px 0;
+      display: grid; grid-template-columns: 60px 1fr auto;
+      align-items: center; gap: 40px; padding: 32px 0;
       border-bottom: 1px solid rgba(201, 169, 110, 0.08);
       transition: padding-left 0.4s var(--ease-out-expo);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-
     .course-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(201, 169, 110, 0.02);
-      transform: translateX(-101%);
-      transition: transform 0.5s var(--ease-out-expo);
+      transform: translateX(-101%); transition: transform 0.5s var(--ease-out-expo);
     }
-
-    .course-item:hover::before {
-      transform: translateX(0);
-    }
-
-    .course-item:hover {
-      padding-left: 16px;
-    }
-
-    .course-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.75rem;
-      font-style: italic;
-      color: var(--gold-dim);
-      text-align: right;
-    }
-
-    .course-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 300;
-      color: var(--cream);
-      margin-bottom: 4px;
-    }
-
-    .course-desc {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: rgba(245, 240, 232, 0.35);
-      line-height: 1.8;
-    }
-
-    .course-allergens {
-      display: flex;
-      gap: 6px;
-    }
-
-    .allergen-tag {
-      font-size: 0.5rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      border: 1px solid rgba(201, 169, 110, 0.2);
-      padding: 3px 8px;
-    }
+    .course-item:hover::before { transform: translateX(0); }
+    .course-item:hover { padding-left: 16px; }
+    .course-num { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; font-style: italic; color: var(--gold-dim); text-align: right; }
+    .course-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--cream); margin-bottom: 4px; }
+    .course-desc { font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(245, 240, 232, 0.35); line-height: 1.8; }
+    .course-allergens { display: flex; gap: 6px; }
+    .allergen-tag { font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); border: 1px solid rgba(201, 169, 110, 0.2); padding: 3px 8px; }
 
     /* ─── GALLERY ─── */
-    #gallery {
-      padding: 80px 0;
-    }
-
-    .gallery-intro {
-      padding: 0 48px;
-      margin-bottom: 48px;
-    }
-
-    .gallery-track-wrap {
-      overflow-x: auto;
-      overflow-y: hidden;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .gallery-track-wrap::-webkit-scrollbar {
-      display: none;
-    }
-
-    .gallery-track {
-      display: flex;
-      gap: 16px;
-      padding: 0 48px;
-    }
-
-    .gallery-item {
-      flex-shrink: 0;
-      width: 380px;
-      height: 500px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .gallery-item-bg {
-      position: absolute;
-      inset: 0;
-      transition: transform 0.7s var(--ease-out-expo);
-    }
-
-    .gallery-item:hover .gallery-item-bg {
-      transform: scale(1.06);
-    }
-
-    .gallery-item:nth-child(1) .gallery-item-bg {
-      background: linear-gradient(135deg, #1a1005 0%, #0f1a08 100%);
-    }
-
-    .gallery-item:nth-child(2) .gallery-item-bg {
-      background: linear-gradient(135deg, #0d1520 0%, #100d1a 100%);
-    }
-
-    .gallery-item:nth-child(3) .gallery-item-bg {
-      background: linear-gradient(135deg, #1a0d0d 0%, #0d1a0d 100%);
-    }
-
-    .gallery-item:nth-child(4) .gallery-item-bg {
-      background: linear-gradient(135deg, #0a150d 0%, #15100a 100%);
-    }
-
-    .gallery-item:nth-child(5) .gallery-item-bg {
-      background: linear-gradient(135deg, #100a15 0%, #0a1015 100%);
-    }
-
+    #gallery { padding: 80px 0; }
+    .gallery-intro { padding: 0 48px; margin-bottom: 48px; }
+    .gallery-track-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
+    .gallery-track-wrap::-webkit-scrollbar { display: none; }
+    .gallery-track { display: flex; gap: 16px; padding: 0 48px; }
+    .gallery-item { flex-shrink: 0; width: 380px; height: 500px; position: relative; overflow: hidden; }
+    .gallery-item-bg { position: absolute; inset: 0; transition: transform 0.7s var(--ease-out-expo); }
+    .gallery-item:hover .gallery-item-bg { transform: scale(1.06); }
+    .gallery-item:nth-child(1) .gallery-item-bg { background: linear-gradient(135deg, #1a1005 0%, #0f1a08 100%); }
+    .gallery-item:nth-child(2) .gallery-item-bg { background: linear-gradient(135deg, #0d1520 0%, #100d1a 100%); }
+    .gallery-item:nth-child(3) .gallery-item-bg { background: linear-gradient(135deg, #1a0d0d 0%, #0d1a0d 100%); }
+    .gallery-item:nth-child(4) .gallery-item-bg { background: linear-gradient(135deg, #0a150d 0%, #15100a 100%); }
+    .gallery-item:nth-child(5) .gallery-item-bg { background: linear-gradient(135deg, #100a15 0%, #0a1015 100%); }
     .gallery-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.45rem;
-      letter-spacing: 0.25em;
-      color: rgba(201, 169, 110, 0.1);
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 0.45rem; letter-spacing: 0.25em; color: rgba(201, 169, 110, 0.1);
       background: radial-gradient(ellipse at center, rgba(201, 169, 110, 0.08) 0%, transparent 70%);
     }
-
     .gallery-item-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 28px 24px;
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px;
       background: linear-gradient(to top, rgba(10, 10, 8, 0.9) 0%, transparent 100%);
-      transform: translateY(60px);
-      transition: transform 0.4s var(--ease-out-expo);
+      transform: translateY(60px); transition: transform 0.4s var(--ease-out-expo);
     }
-
-    .gallery-item:hover .gallery-item-caption {
-      transform: translateY(0);
-    }
-
-    .gallery-caption-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--cream);
-      margin-bottom: 4px;
-    }
-
-    .gallery-caption-sub {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: var(--gold-dim);
-    }
+    .gallery-item:hover .gallery-item-caption { transform: translateY(0); }
+    .gallery-caption-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; color: var(--cream); margin-bottom: 4px; }
+    .gallery-caption-sub { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold-dim); }
 
     /* ─── CHEF ─── */
-    #chef {
-      padding: 140px 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 120px;
-      align-items: center;
-    }
-
-    .chef-visual {
-      position: relative;
-    }
-
+    #chef { padding: 140px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: center; }
+    .chef-visual { position: relative; }
     .chef-image {
-      width: 100%;
-      aspect-ratio: 4/5;
+      width: 100%; aspect-ratio: 4/5;
       background: linear-gradient(135deg, #0f1510 0%, #1a1005 100%);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-
     .chef-image::before {
-      content: 'CHEF IMAGE PLACEHOLDER';
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.5rem;
-      letter-spacing: 0.25em;
-      color: rgba(201, 169, 110, 0.1);
+      content: 'CHEF IMAGE PLACEHOLDER'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.5rem; letter-spacing: 0.25em; color: rgba(201, 169, 110, 0.1);
       background: radial-gradient(ellipse at 50% 40%, rgba(139, 90, 43, 0.15) 0%, transparent 70%);
     }
-
-    .chef-accent-line {
-      position: absolute;
-      top: 30px;
-      right: -30px;
-      width: 1px;
-      height: 80%;
-      background: linear-gradient(to bottom, transparent, rgba(201, 169, 110, 0.3), transparent);
-    }
-
-    .chef-accent-text {
-      position: absolute;
-      right: -80px;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      font-size: 0.55rem;
-      letter-spacing: 0.4em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .chef-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 300;
-      color: var(--cream);
-      margin-bottom: 8px;
-      line-height: 1.1;
-    }
-
-    .chef-title {
-      font-size: 0.65rem;
-      letter-spacing: 0.35em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    .chef-bio {
-      font-size: 0.85rem;
-      line-height: 2;
-      color: rgba(245, 240, 232, 0.5);
-      margin-bottom: 48px;
-    }
-
-    .chef-awards {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      border-top: 1px solid rgba(201, 169, 110, 0.1);
-      padding-top: 40px;
-    }
-
-    .award-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .award-icon {
-      width: 6px;
-      height: 6px;
-      background: var(--gold);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-
-    .award-text {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      color: rgba(245, 240, 232, 0.4);
-    }
+    .chef-accent-line { position: absolute; top: 30px; right: -30px; width: 1px; height: 80%; background: linear-gradient(to bottom, transparent, rgba(201, 169, 110, 0.3), transparent); }
+    .chef-accent-text { position: absolute; right: -80px; top: 50%; transform: translateY(-50%) rotate(90deg); font-size: 0.55rem; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; white-space: nowrap; }
+    .chef-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--cream); margin-bottom: 8px; line-height: 1.1; }
+    .chef-title { font-size: 0.65rem; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 40px; }
+    .chef-bio { font-size: 0.85rem; line-height: 2; color: rgba(245, 240, 232, 0.5); margin-bottom: 48px; }
+    .chef-awards { display: flex; flex-direction: column; gap: 16px; border-top: 1px solid rgba(201, 169, 110, 0.1); padding-top: 40px; }
+    .award-item { display: flex; align-items: center; gap: 16px; }
+    .award-icon { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+    .award-text { font-size: 0.7rem; letter-spacing: 0.15em; color: rgba(245, 240, 232, 0.4); }
 
     /* ─── RESERVE ─── */
-    #reserve {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      padding: 120px 48px;
-    }
-
-    .reserve-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #0f1a0d 0%, #1a0f0a 50%, #0a0f1a 100%);
-    }
-
-    .reserve-bg-grid {
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(201, 169, 110, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 169, 110, 0.04) 1px, transparent 1px);
-      background-size: 80px 80px;
-    }
-
-    .reserve-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-    }
-
-    .reserve-tag {
-      font-size: 0.6rem;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      display: block;
-    }
-
-    .reserve-heading {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.5rem, 7vw, 6rem);
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 32px;
-    }
-
-    .reserve-body {
-      font-size: 0.8rem;
-      line-height: 2;
-      color: rgba(245, 240, 232, 0.45);
-      margin-bottom: 56px;
-    }
-
-    .reserve-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: var(--gold);
-      padding: 18px 48px;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: transparent;
-      border: 1px solid rgba(201, 169, 110, 0.3);
-      padding: 18px 48px;
-      text-decoration: none;
-      transition: border-color 0.3s, color 0.3s;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--gold);
-      color: var(--gold-light);
-    }
+    #reserve { min-height: 80vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; text-align: center; padding: 120px 48px; }
+    .reserve-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0f1a0d 0%, #1a0f0a 50%, #0a0f1a 100%); }
+    .reserve-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201, 169, 110, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 169, 110, 0.04) 1px, transparent 1px); background-size: 80px 80px; }
+    .reserve-content { position: relative; z-index: 2; max-width: 700px; }
+    .reserve-tag { font-size: 0.6rem; letter-spacing: 0.5em; color: var(--gold); text-transform: uppercase; margin-bottom: 32px; display: block; }
+    .reserve-heading { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 7vw, 6rem); font-weight: 300; letter-spacing: 0.08em; color: var(--cream); line-height: 1; margin-bottom: 32px; }
+    .reserve-body { font-size: 0.8rem; line-height: 2; color: rgba(245, 240, 232, 0.45); margin-bottom: 56px; }
+    .reserve-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink); background: var(--gold); padding: 18px 48px; text-decoration: none; transition: background 0.3s, transform 0.3s; display: inline-flex; align-items: center; gap: 12px; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-secondary { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); background: transparent; border: 1px solid rgba(201, 169, 110, 0.3); padding: 18px 48px; text-decoration: none; transition: border-color 0.3s, color 0.3s; }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
 
     /* ─── FOOTER ─── */
-    footer {
-      padding: 80px 48px 48px;
-      border-top: 1px solid rgba(201, 169, 110, 0.1);
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 64px;
-    }
-
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-
-    .footer-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-style: italic;
-      color: rgba(245, 240, 232, 0.35);
-      line-height: 1.7;
-      max-width: 260px;
-    }
-
-    .footer-col h4 {
-      font-size: 0.55rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-col ul li a {
-      font-size: 0.75rem;
-      color: rgba(245, 240, 232, 0.4);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-col ul li a:hover {
-      color: var(--gold);
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(201, 169, 110, 0.06);
-      padding-top: 32px;
-    }
-
-    .footer-copy {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(245, 240, 232, 0.2);
-    }
-
-    .footer-socials {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-socials a {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(245, 240, 232, 0.3);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-
-    .footer-socials a:hover {
-      color: var(--gold);
-    }
+    footer { padding: 80px 48px 48px; border-top: 1px solid rgba(201, 169, 110, 0.1); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 64px; }
+    .footer-logo { font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; }
+    .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: rgba(245, 240, 232, 0.35); line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul li a { font-size: 0.75rem; color: rgba(245, 240, 232, 0.4); text-decoration: none; transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201, 169, 110, 0.06); padding-top: 32px; }
+    .footer-copy { font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(245, 240, 232, 0.2); }
+    .footer-socials { display: flex; gap: 24px; }
+    .footer-socials a { font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(245, 240, 232, 0.3); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+    .footer-socials a:hover { color: var(--gold); }
 
     /* ─── SCROLL ANIMATIONS ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-60px);
-      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
-    }
-
-    .reveal-left.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(60px);
-      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
-    }
-
-    .reveal-right.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .delay-1 {
-      transition-delay: 0.1s;
-    }
-
-    .delay-2 {
-      transition-delay: 0.2s;
-    }
-
-    .delay-3 {
-      transition-delay: 0.3s;
-    }
-
-    .delay-4 {
-      transition-delay: 0.4s;
-    }
-
-    .delay-5 {
-      transition-delay: 0.5s;
-    }
+    .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-60px); transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(60px); transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
 
     /* ─── PROGRESS LINE ─── */
-    #progress-line {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9001;
-      height: 2px;
-      background: linear-gradient(to right, var(--gold-dim), var(--gold));
-      width: 0%;
-    }
+    #progress-line { position: fixed; top: 0; left: 0; z-index: 9001; height: 2px; background: linear-gradient(to right, var(--gold-dim), var(--gold)); width: 0%; }
 
     /* ─── PARTICLES ─── */
-    #particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 50%;
-      opacity: 0;
-      animation: particleFloat var(--duration, 8s) var(--delay, 0s) ease-in-out infinite;
-    }
-
+    #particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .particle { position: absolute; width: 2px; height: 2px; background: var(--gold); border-radius: 50%; opacity: 0; animation: particleFloat var(--duration, 8s) var(--delay, 0s) ease-in-out infinite; }
     @keyframes particleFloat {
-      0% {
-        transform: translateY(100vh) translateX(0);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: 0.3;
-      }
-
-      90% {
-        opacity: 0.1;
-      }
-
-      100% {
-        transform: translateY(-100px) translateX(var(--drift, 30px));
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.1; }
+      100% { transform: translateY(-100px) translateX(var(--drift, 30px)); opacity: 0; }
     }
 
     /* ══════════════════════════
-     MOBILE POLISH
-  ══════════════════════════ */
+       MOBILE POLISH
+    ══════════════════════════ */
     @media (max-width: 900px) {
-
-      /* Nav */
-      nav {
-        padding: 20px 24px;
-      }
-
-      nav.scrolled {
-        padding: 14px 24px;
-      }
-
-      .nav-links,
-      .nav-reserve {
-        display: none;
-      }
-
-      .nav-hamburger {
-        display: flex;
-      }
-
-      /* Hero */
-      .hero-content {
-        padding: 0 24px 56px;
-      }
-
-      .hero-number {
-        display: none;
-      }
-
-      .hero-line {
-        display: none;
-      }
-
-      .hero-sub {
-        gap: 20px;
-      }
-
-      /* Philosophy */
-      #philosophy {
-        grid-template-columns: 1fr;
-        padding: 80px 24px;
-        gap: 56px;
-      }
-
-      .philosophy-body {
-        max-width: 100%;
-      }
-
-      .philosophy-image-accent {
-        display: none;
-      }
-
-      .philosophy-stat {
-        left: 0;
-        top: -16px;
-      }
-
-      /* Menu */
-      .menu-intro {
-        padding: 0 24px;
-      }
-
-      .menu-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .menu-card {
-        aspect-ratio: 4/3;
-        cursor: pointer;
-      }
-
-      .menu-card-visual {
-        display: none;
-      }
-
-      .menu-card-content {
-        transform: translateY(0);
-        padding: 24px 20px;
-      }
-
-      .menu-card-desc {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Experience */
-      #experience {
-        grid-template-columns: 1fr;
-      }
-
-      .exp-visual {
-        min-height: 50vw;
-      }
-
-      .exp-content {
-        padding: 60px 24px;
-      }
-
-      .exp-features {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      /* Tasting */
-      #tasting {
-        padding: 80px 24px;
-      }
-
-      .tasting-header {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-      }
-
-      .course-item {
-        grid-template-columns: 40px 1fr;
-        gap: 16px;
-      }
-
-      .course-allergens {
-        display: none;
-      }
-
-      .course-item:hover {
-        padding-left: 0;
-      }
-
-      /* Gallery */
-      .gallery-intro {
-        padding: 0 24px;
-      }
-
-      .gallery-track {
-        padding: 0 24px;
-        gap: 12px;
-      }
-
-      .gallery-item {
-        width: 76vw;
-        height: 54vw;
-      }
-
-      .gallery-item-caption {
-        transform: translateY(0);
-      }
-
-      /* Chef */
-      #chef {
-        grid-template-columns: 1fr;
-        padding: 80px 24px;
-        gap: 48px;
-      }
-
-      .chef-accent-line,
-      .chef-accent-text {
-        display: none;
-      }
-
-      .chef-image {
-        aspect-ratio: 3/2;
-      }
-
-      /* Reserve */
-      #reserve {
-        padding: 100px 24px;
-      }
-
-      .reserve-buttons {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        justify-content: center;
-      }
-
-      /* Footer */
-      footer {
-        padding: 60px 24px 40px;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
-        gap: 36px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links, .nav-reserve { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-content { padding: 0 24px 56px; }
+      .hero-number { display: none; }
+      .hero-line { display: none; }
+      .hero-sub { gap: 20px; }
+      #philosophy { grid-template-columns: 1fr; padding: 80px 24px; gap: 56px; }
+      .philosophy-body { max-width: 100%; }
+      .philosophy-image-accent { display: none; }
+      .philosophy-stat { left: 0; top: -16px; }
+      .menu-intro { padding: 0 24px; }
+      .menu-cards { grid-template-columns: 1fr; }
+      .menu-card { aspect-ratio: 4/3; cursor: pointer; }
+      .menu-card-visual { display: none; }
+      .menu-card-content { transform: translateY(0); padding: 24px 20px; }
+      .menu-card-desc { opacity: 1; transform: translateY(0); }
+      #experience { grid-template-columns: 1fr; }
+      .exp-visual { min-height: 50vw; }
+      .exp-content { padding: 60px 24px; }
+      .exp-features { grid-template-columns: 1fr; gap: 24px; }
+      #tasting { padding: 80px 24px; }
+      .tasting-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+      .course-item { grid-template-columns: 40px 1fr; gap: 16px; }
+      .course-allergens { display: none; }
+      .course-item:hover { padding-left: 0; }
+      .gallery-intro { padding: 0 24px; }
+      .gallery-track { padding: 0 24px; gap: 12px; }
+      .gallery-item { width: 76vw; height: 54vw; }
+      .gallery-item-caption { transform: translateY(0); }
+      #chef { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+      .chef-accent-line, .chef-accent-text { display: none; }
+      .chef-image { aspect-ratio: 3/2; }
+      #reserve { padding: 100px 24px; }
+      .reserve-buttons { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+      footer { padding: 60px 24px 40px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     }
-
     @media (max-width: 480px) {
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
+      .footer-top { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- Progress Line -->
   <div id="progress-line"></div>
-
-  <!-- Cursor -->
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
-
-  <!-- Particles -->
   <div id="particles"></div>
 
-  <!-- Loader -->
   <div id="loader">
     <div class="l-text"><span>YUKI</span></div>
     <div class="l-line"></div>
     <div class="l-sub">Fine Dining · Bangalore</div>
   </div>
 
-  <!-- Mobile Menu -->
   <div id="mobile-menu">
     <a href="#philosophy" class="mob-link"><span>Philosophy</span><span class="mob-num">01</span></a>
     <a href="#menu" class="mob-link"><span>Menu</span><span class="mob-num">02</span></a>
@@ -1814,11 +619,8 @@
     </div>
   </div>
 
-  <!-- NAV -->
   <nav id="nav">
-    <a href="#" class="nav-logo">
-      <span class="logo-mark">Y</span>YUKI
-    </a>
+    <a href="#" class="nav-logo"><span class="logo-mark">Y</span>YUKI</a>
     <div class="nav-links">
       <a href="#philosophy">Philosophy</a>
       <a href="#menu">Menu</a>
@@ -1833,73 +635,45 @@
     </button>
   </nav>
 
-  <!-- HERO -->
   <section id="hero">
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-vignette"></div>
     <div class="hero-gradient"></div>
     <div class="hero-content">
       <p class="hero-tag" id="heroTag">Fine Dining · Bangalore · Est. 2024</p>
-      <h1 class="hero-title">
-        <span class="word" id="heroWord">YUKI</span>
-      </h1>
+      <h1 class="hero-title"><span class="word" id="heroWord">YUKI</span></h1>
       <div class="hero-sub" id="heroSub">
         <span class="hero-sub-text">Snow · Purity · Precision</span>
         <div class="hero-line"></div>
-        <div class="hero-scroll">
-          <div class="scroll-arrow"></div>
-          <span>Scroll</span>
-        </div>
+        <div class="hero-scroll"><div class="scroll-arrow"></div><span>Scroll</span></div>
       </div>
     </div>
     <div class="hero-number">28.6139° N · 77.2090° E</div>
   </section>
 
-  <!-- MARQUEE -->
   <div class="marquee-section">
     <div class="marquee-track" id="marqueeTrack">
-      <div class="marquee-item">Japanese Omakase<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Bangalore's Finest<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">12-Course Tasting Menu<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Seasonal Ingredients<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Private Dining Available<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Award-Winning Wine List<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Japanese Omakase<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Bangalore's Finest<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">12-Course Tasting Menu<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Seasonal Ingredients<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Private Dining Available<div class="marquee-dot"></div>
-      </div>
-      <div class="marquee-item">Award-Winning Wine List<div class="marquee-dot"></div>
-      </div>
+      <div class="marquee-item">Japanese Omakase<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Bangalore's Finest<div class="marquee-dot"></div></div>
+      <div class="marquee-item">12-Course Tasting Menu<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Seasonal Ingredients<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Private Dining Available<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Award-Winning Wine List<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Japanese Omakase<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Bangalore's Finest<div class="marquee-dot"></div></div>
+      <div class="marquee-item">12-Course Tasting Menu<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Seasonal Ingredients<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Private Dining Available<div class="marquee-dot"></div></div>
+      <div class="marquee-item">Award-Winning Wine List<div class="marquee-dot"></div></div>
     </div>
   </div>
 
-  <!-- PHILOSOPHY -->
   <section id="philosophy">
     <div class="philosophy-left">
       <div class="section-label reveal">Our Philosophy</div>
-      <h2 class="philosophy-heading reveal delay-1">
-        Where <em>snow</em> meets<br>southern fire.
-      </h2>
-      <p class="philosophy-body reveal delay-2">
-        YUKI — meaning "snow" in Japanese — is a meditation on contrast. We bring the precision and reverence of
-        Japanese omakase culture to Bangalore's vibrant soul, crafting each plate as a moment suspended in time.
-      </p>
-      <p class="philosophy-body reveal delay-3">
-        Every ingredient is sourced with intention. Every technique is practiced into instinct. Every evening is a
-        conversation between chef and guest, unrepeatable and unforgettable.
-      </p>
+      <h2 class="philosophy-heading reveal delay-1">Where <em>snow</em> meets<br>southern fire.</h2>
+      <p class="philosophy-body reveal delay-2">YUKI — meaning "snow" in Japanese — is a meditation on contrast. We bring the precision and reverence of Japanese omakase culture to Bangalore's vibrant soul, crafting each plate as a moment suspended in time.</p>
+      <p class="philosophy-body reveal delay-3">Every ingredient is sourced with intention. Every technique is practiced into instinct. Every evening is a conversation between chef and guest, unrepeatable and unforgettable.</p>
       <a href="#menu" class="text-link reveal delay-4">Explore our philosophy</a>
     </div>
     <div class="philosophy-right reveal-right">
@@ -1912,7 +686,6 @@
     </div>
   </section>
 
-  <!-- MENU -->
   <section id="menu">
     <div class="menu-intro">
       <div class="section-label reveal">Our Menu</div>
@@ -1920,8 +693,7 @@
     </div>
     <div class="menu-cards">
       <div class="menu-card reveal delay-1">
-        <div class="menu-card-bg"></div>
-        <div class="menu-card-overlay"></div>
+        <div class="menu-card-bg"></div><div class="menu-card-overlay"></div>
         <div class="menu-card-visual">DISH IMAGE</div>
         <div class="menu-card-content">
           <div class="menu-card-number">01 / Starter</div>
@@ -1931,8 +703,7 @@
         </div>
       </div>
       <div class="menu-card reveal delay-2">
-        <div class="menu-card-bg"></div>
-        <div class="menu-card-overlay"></div>
+        <div class="menu-card-bg"></div><div class="menu-card-overlay"></div>
         <div class="menu-card-visual">DISH IMAGE</div>
         <div class="menu-card-content">
           <div class="menu-card-number">02 / Main</div>
@@ -1942,8 +713,7 @@
         </div>
       </div>
       <div class="menu-card reveal delay-3">
-        <div class="menu-card-bg"></div>
-        <div class="menu-card-overlay"></div>
+        <div class="menu-card-bg"></div><div class="menu-card-overlay"></div>
         <div class="menu-card-visual">DISH IMAGE</div>
         <div class="menu-card-content">
           <div class="menu-card-number">03 / Dessert</div>
@@ -1955,48 +725,32 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
     <div class="exp-visual reveal-left">
       <div class="exp-visual-inner">INTERIOR IMAGE PLACEHOLDER</div>
     </div>
     <div class="exp-content">
       <div class="section-label reveal">The Experience</div>
-      <blockquote class="exp-quote reveal delay-1">
-        Each evening at YUKI is scored like a symphony — silence, crescendo, resolution. We offer not just dinner, but a
-        complete sensory memory.
-      </blockquote>
+      <blockquote class="exp-quote reveal delay-1">Each evening at YUKI is scored like a symphony — silence, crescendo, resolution. We offer not just dinner, but a complete sensory memory.</blockquote>
       <p class="exp-attribution reveal delay-2">— Chef Aiko Tanaka, Executive Chef</p>
       <div class="exp-features">
         <div class="exp-feature-item reveal delay-2">
-          <svg class="exp-feature-icon" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="#c9a96e" stroke-width="0.5" />
-            <path d="M8 14 L12 18 L20 10" stroke="#c9a96e" stroke-width="0.8" />
-          </svg>
+          <svg class="exp-feature-icon" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#c9a96e" stroke-width="0.5"/><path d="M8 14 L12 18 L20 10" stroke="#c9a96e" stroke-width="0.8"/></svg>
           <h4 class="exp-feature-title">Omakase Format</h4>
           <p class="exp-feature-desc">Trust the chef. Twelve courses crafted to the season's finest offerings.</p>
         </div>
         <div class="exp-feature-item reveal delay-3">
-          <svg class="exp-feature-icon" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="#c9a96e" stroke-width="0.5" />
-            <path d="M14 7 L14 14 L19 17" stroke="#c9a96e" stroke-width="0.8" />
-          </svg>
+          <svg class="exp-feature-icon" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#c9a96e" stroke-width="0.5"/><path d="M14 7 L14 14 L19 17" stroke="#c9a96e" stroke-width="0.8"/></svg>
           <h4 class="exp-feature-title">3-Hour Journey</h4>
           <p class="exp-feature-desc">No rushing. No shortcuts. Each evening unfolds at the pace of intention.</p>
         </div>
         <div class="exp-feature-item reveal delay-4">
-          <svg class="exp-feature-icon" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="#c9a96e" stroke-width="0.5" />
-            <path d="M10 14 Q14 8 18 14 Q14 20 10 14Z" stroke="#c9a96e" stroke-width="0.8" />
-          </svg>
+          <svg class="exp-feature-icon" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#c9a96e" stroke-width="0.5"/><path d="M10 14 Q14 8 18 14 Q14 20 10 14Z" stroke="#c9a96e" stroke-width="0.8"/></svg>
           <h4 class="exp-feature-title">Wine Pairing</h4>
           <p class="exp-feature-desc">Curated natural wines and sake, paired to each course with precision.</p>
         </div>
         <div class="exp-feature-item reveal delay-5">
-          <svg class="exp-feature-icon" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="#c9a96e" stroke-width="0.5" />
-            <rect x="10" y="10" width="8" height="8" stroke="#c9a96e" stroke-width="0.8" />
-          </svg>
+          <svg class="exp-feature-icon" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#c9a96e" stroke-width="0.5"/><rect x="10" y="10" width="8" height="8" stroke="#c9a96e" stroke-width="0.8"/></svg>
           <h4 class="exp-feature-title">Private Dining</h4>
           <p class="exp-feature-desc">An intimate room for eight. The entire restaurant, exclusively yours.</p>
         </div>
@@ -2004,7 +758,6 @@
     </div>
   </section>
 
-  <!-- TASTING -->
   <section id="tasting">
     <div class="tasting-header">
       <div>
@@ -2014,58 +767,15 @@
       <a href="#reserve" class="text-link reveal">View full menu</a>
     </div>
     <div class="courses-list">
-      <div class="course-item reveal">
-        <span class="course-num">I</span>
-        <div class="course-info">
-          <h3 class="course-name">Amuse-Bouche — Seasonal</h3>
-          <p class="course-desc">Chef's surprise opening. One perfect bite. Changes daily.</p>
-        </div>
-        <div class="course-allergens"><span class="allergen-tag">GF</span></div>
-      </div>
-      <div class="course-item reveal delay-1">
-        <span class="course-num">II</span>
-        <div class="course-info">
-          <h3 class="course-name">Dashi · Kaveri Caviar · Yuzu</h3>
-          <p class="course-desc">Cold-set dashi gel, pearl onion, yuzu foam, micro herbs</p>
-        </div>
-        <div class="course-allergens"><span class="allergen-tag">GF</span><span class="allergen-tag">DF</span></div>
-      </div>
-      <div class="course-item reveal delay-2">
-        <span class="course-num">III</span>
-        <div class="course-info">
-          <h3 class="course-name">Sashimi — Hamachi · Ponzu · Jalapeño</h3>
-          <p class="course-desc">Day-boat hamachi, house ponzu, Bangalore chilli oil, sesame snow</p>
-        </div>
-        <div class="course-allergens"><span class="allergen-tag">GF</span></div>
-      </div>
-      <div class="course-item reveal delay-3">
-        <span class="course-num">IV</span>
-        <div class="course-info">
-          <h3 class="course-name">Uni Pasta · Shiso Butter · Bottarga</h3>
-          <p class="course-desc">Hand-rolled pasta, Santa Barbara uni, cultured shiso butter, cured bottarga</p>
-        </div>
-        <div class="course-allergens"><span class="allergen-tag">VG</span></div>
-      </div>
-      <div class="course-item reveal delay-4">
-        <span class="course-num">V</span>
-        <div class="course-info">
-          <h3 class="course-name">A5 Wagyu · Truffle · Aged Soy</h3>
-          <p class="course-desc">Hokkaido wagyu sirloin, Périgord truffle XO, 10-year aged tamari, chrysanthemum</p>
-        </div>
-        <div class="course-allergens"><span class="allergen-tag">GF</span></div>
-      </div>
-      <div class="course-item reveal delay-5">
-        <span class="course-num">XII</span>
-        <div class="course-info">
-          <h3 class="course-name">Mignardises — Farewell Sweets</h3>
-          <p class="course-desc">Hand-crafted petit fours. The last note of an evening worth returning to.</p>
-        </div>
-        <div class="course-allergens"><span class="allergen-tag">VG</span></div>
-      </div>
+      <div class="course-item reveal"><span class="course-num">I</span><div class="course-info"><h3 class="course-name">Amuse-Bouche — Seasonal</h3><p class="course-desc">Chef's surprise opening. One perfect bite. Changes daily.</p></div><div class="course-allergens"><span class="allergen-tag">GF</span></div></div>
+      <div class="course-item reveal delay-1"><span class="course-num">II</span><div class="course-info"><h3 class="course-name">Dashi · Kaveri Caviar · Yuzu</h3><p class="course-desc">Cold-set dashi gel, pearl onion, yuzu foam, micro herbs</p></div><div class="course-allergens"><span class="allergen-tag">GF</span><span class="allergen-tag">DF</span></div></div>
+      <div class="course-item reveal delay-2"><span class="course-num">III</span><div class="course-info"><h3 class="course-name">Sashimi — Hamachi · Ponzu · Jalapeño</h3><p class="course-desc">Day-boat hamachi, house ponzu, Bangalore chilli oil, sesame snow</p></div><div class="course-allergens"><span class="allergen-tag">GF</span></div></div>
+      <div class="course-item reveal delay-3"><span class="course-num">IV</span><div class="course-info"><h3 class="course-name">Uni Pasta · Shiso Butter · Bottarga</h3><p class="course-desc">Hand-rolled pasta, Santa Barbara uni, cultured shiso butter, cured bottarga</p></div><div class="course-allergens"><span class="allergen-tag">VG</span></div></div>
+      <div class="course-item reveal delay-4"><span class="course-num">V</span><div class="course-info"><h3 class="course-name">A5 Wagyu · Truffle · Aged Soy</h3><p class="course-desc">Hokkaido wagyu sirloin, Périgord truffle XO, 10-year aged tamari, chrysanthemum</p></div><div class="course-allergens"><span class="allergen-tag">GF</span></div></div>
+      <div class="course-item reveal delay-5"><span class="course-num">XII</span><div class="course-info"><h3 class="course-name">Mignardises — Farewell Sweets</h3><p class="course-desc">Hand-crafted petit fours. The last note of an evening worth returning to.</p></div><div class="course-allergens"><span class="allergen-tag">VG</span></div></div>
     </div>
   </section>
 
-  <!-- GALLERY -->
   <section id="gallery">
     <div class="gallery-intro">
       <div class="section-label reveal">Our Space</div>
@@ -2073,51 +783,15 @@
     </div>
     <div class="gallery-track-wrap">
       <div class="gallery-track" id="galleryTrack">
-        <div class="gallery-item">
-          <div class="gallery-item-bg"></div>
-          <div class="gallery-placeholder">THE BAR</div>
-          <div class="gallery-item-caption">
-            <h4 class="gallery-caption-title">The Bar</h4>
-            <p class="gallery-caption-sub">Premium sake & whisky</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-item-bg"></div>
-          <div class="gallery-placeholder">MAIN DINING</div>
-          <div class="gallery-item-caption">
-            <h4 class="gallery-caption-title">Main Dining Room</h4>
-            <p class="gallery-caption-sub">Seats 32 guests</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-item-bg"></div>
-          <div class="gallery-placeholder">OMAKASE COUNTER</div>
-          <div class="gallery-item-caption">
-            <h4 class="gallery-caption-title">Omakase Counter</h4>
-            <p class="gallery-caption-sub">8 exclusive seats</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-item-bg"></div>
-          <div class="gallery-placeholder">PRIVATE ROOM</div>
-          <div class="gallery-item-caption">
-            <h4 class="gallery-caption-title">Private Dining</h4>
-            <p class="gallery-caption-sub">For 2 to 8 guests</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-item-bg"></div>
-          <div class="gallery-placeholder">THE KITCHEN</div>
-          <div class="gallery-item-caption">
-            <h4 class="gallery-caption-title">Open Kitchen</h4>
-            <p class="gallery-caption-sub">Theatre of precision</p>
-          </div>
-        </div>
+        <div class="gallery-item"><div class="gallery-item-bg"></div><div class="gallery-placeholder">THE BAR</div><div class="gallery-item-caption"><h4 class="gallery-caption-title">The Bar</h4><p class="gallery-caption-sub">Premium sake & whisky</p></div></div>
+        <div class="gallery-item"><div class="gallery-item-bg"></div><div class="gallery-placeholder">MAIN DINING</div><div class="gallery-item-caption"><h4 class="gallery-caption-title">Main Dining Room</h4><p class="gallery-caption-sub">Seats 32 guests</p></div></div>
+        <div class="gallery-item"><div class="gallery-item-bg"></div><div class="gallery-placeholder">OMAKASE COUNTER</div><div class="gallery-item-caption"><h4 class="gallery-caption-title">Omakase Counter</h4><p class="gallery-caption-sub">8 exclusive seats</p></div></div>
+        <div class="gallery-item"><div class="gallery-item-bg"></div><div class="gallery-placeholder">PRIVATE ROOM</div><div class="gallery-item-caption"><h4 class="gallery-caption-title">Private Dining</h4><p class="gallery-caption-sub">For 2 to 8 guests</p></div></div>
+        <div class="gallery-item"><div class="gallery-item-bg"></div><div class="gallery-placeholder">THE KITCHEN</div><div class="gallery-item-caption"><h4 class="gallery-caption-title">Open Kitchen</h4><p class="gallery-caption-sub">Theatre of precision</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- CHEF -->
   <section id="chef">
     <div class="chef-visual reveal-left">
       <div class="chef-image"></div>
@@ -2128,36 +802,22 @@
       <div class="section-label reveal">The Culinary Mind</div>
       <h2 class="chef-name reveal delay-1">Chef<br>Aiko Tanaka</h2>
       <p class="chef-title reveal delay-2">Executive Chef & Founder</p>
-      <p class="chef-bio reveal delay-3">
-        Trained at Sukiyabashi Jiro in Tokyo and honed in the kitchens of Copenhagen and Paris, Chef Aiko brought her
-        reverence for Japanese technique and her love for Indian spice to Bangalore in 2024. YUKI is her manifesto — a
-        restaurant that refuses to choose between two worlds.
-      </p>
+      <p class="chef-bio reveal delay-3">Trained at Sukiyabashi Jiro in Tokyo and honed in the kitchens of Copenhagen and Paris, Chef Aiko brought her reverence for Japanese technique and her love for Indian spice to Bangalore in 2024. YUKI is her manifesto — a restaurant that refuses to choose between two worlds.</p>
       <div class="chef-awards reveal delay-4">
-        <div class="award-item">
-          <div class="award-icon"></div><span class="award-text">Best New Restaurant — Times Food Awards 2025</span>
-        </div>
-        <div class="award-item">
-          <div class="award-icon"></div><span class="award-text">Asia's 50 Best — One to Watch 2025</span>
-        </div>
-        <div class="award-item">
-          <div class="award-icon"></div><span class="award-text">Forbes 30 Under 30 — Food & Beverage 2024</span>
-        </div>
+        <div class="award-item"><div class="award-icon"></div><span class="award-text">Best New Restaurant — Times Food Awards 2025</span></div>
+        <div class="award-item"><div class="award-icon"></div><span class="award-text">Asia's 50 Best — One to Watch 2025</span></div>
+        <div class="award-item"><div class="award-icon"></div><span class="award-text">Forbes 30 Under 30 — Food & Beverage 2024</span></div>
       </div>
     </div>
   </section>
 
-  <!-- RESERVE -->
   <section id="reserve">
     <div class="reserve-bg"></div>
     <div class="reserve-bg-grid"></div>
     <div class="reserve-content">
       <span class="reserve-tag reveal">Book Your Evening</span>
       <h2 class="reserve-heading reveal delay-1">An evening<br>awaits.</h2>
-      <p class="reserve-body reveal delay-2">
-        Tables at YUKI are limited to thirty-two covers each evening. We recommend booking at least two weeks in
-        advance. For private dining enquiries, please contact us directly.
-      </p>
+      <p class="reserve-body reveal delay-2">Tables at YUKI are limited to thirty-two covers each evening. We recommend booking at least two weeks in advance. For private dining enquiries, please contact us directly.</p>
       <div class="reserve-buttons reveal delay-3">
         <a href="#" class="btn-primary">Reserve a Table →</a>
         <a href="tel:+918001234567" class="btn-secondary">+91 800 123 4567</a>
@@ -2165,48 +825,19 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logo">YUKI</div>
         <p class="footer-tagline">Where Japanese precision meets the soul of Bangalore.</p>
       </div>
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="#philosophy">Our Philosophy</a></li>
-          <li><a href="#menu">The Menu</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#chef">Our Chef</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Visit</h4>
-        <ul>
-          <li><a href="#">14, Lavelle Road</a></li>
-          <li><a href="#">Bengaluru 560001</a></li>
-          <li><a href="#">Tue–Sun, 7pm–11pm</a></li>
-          <li><a href="#">Closed Mondays</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Press Enquiries</a></li>
-          <li><a href="#">Gift Vouchers</a></li>
-          <li><a href="#">Private Events</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#philosophy">Our Philosophy</a></li><li><a href="#menu">The Menu</a></li><li><a href="#experience">Experience</a></li><li><a href="#chef">Our Chef</a></li></ul></div>
+      <div class="footer-col"><h4>Visit</h4><ul><li><a href="#">14, Lavelle Road</a></li><li><a href="#">Bengaluru 560001</a></li><li><a href="#">Tue–Sun, 7pm–11pm</a></li><li><a href="#">Closed Mondays</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Press Enquiries</a></li><li><a href="#">Gift Vouchers</a></li><li><a href="#">Private Events</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 YUKI Restaurant. All rights reserved.</span>
-      <div class="footer-socials">
-        <a href="#">Instagram</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-      </div>
+      <div class="footer-socials"><a href="#">Instagram</a><a href="#">Privacy</a><a href="#">Terms</a></div>
     </div>
   </footer>
 
@@ -2214,9 +845,7 @@
     // ─── CURSOR ───
     const cursor = document.getElementById('cursor');
     const cursorRing = document.getElementById('cursor-ring');
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
     document.addEventListener('mousemove', e => {
       mouseX = e.clientX; mouseY = e.clientY;
       cursor.style.left = mouseX + 'px';
@@ -2248,11 +877,10 @@
       }, 2400);
     });
 
-    // ─── HAMBURGER / MOBILE MENU ───
+    // ─── HAMBURGER ───
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     let menuOpen = false;
-
     hamburger.addEventListener('click', () => {
       menuOpen = !menuOpen;
       hamburger.classList.toggle('open', menuOpen);
@@ -2260,7 +888,6 @@
       mobileMenu.classList.toggle('open', menuOpen);
       document.body.style.overflow = menuOpen ? 'hidden' : '';
     });
-
     document.querySelectorAll('.mob-link, .mob-reserve').forEach(link => {
       link.addEventListener('click', () => {
         menuOpen = false;
@@ -2270,10 +897,7 @@
         document.body.style.overflow = '';
       });
     });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && menuOpen) hamburger.click();
-    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) hamburger.click(); });
 
     // ─── PARTICLES ───
     const particlesEl = document.getElementById('particles');
@@ -2287,12 +911,11 @@
       particlesEl.appendChild(p);
     }
 
-    // ─── SCROLL PROGRESS + NAV ───
+    // ─── SCROLL ───
     const progressLine = document.getElementById('progress-line');
     const nav = document.getElementById('nav');
     const heroBg = document.getElementById('heroBg');
     let ticking = false;
-
     window.addEventListener('scroll', () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -2309,19 +932,15 @@
       }
     });
 
-    // ─── REVEAL ON SCROLL ───
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    // ─── REVEAL ───
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-    revealEls.forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-    // ─── GALLERY DRAG SCROLL ───
+    // ─── GALLERY DRAG ───
     const galleryTrack = document.getElementById('galleryTrack');
-    let isDragging = false, startX = 0, scrollLeft = 0;
-
+    let isDragging = false, startX = 0, scrollLeft = 0, galleryPos = 0;
     galleryTrack.addEventListener('mousedown', e => {
       isDragging = true;
       startX = e.pageX - galleryTrack.offsetLeft;
@@ -2330,22 +949,14 @@
     });
     document.addEventListener('mousemove', e => {
       if (!isDragging) return;
-      const x = e.pageX - galleryTrack.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      galleryTrack.parentElement.scrollLeft = scrollLeft - walk;
+      galleryTrack.parentElement.scrollLeft = scrollLeft - (e.pageX - galleryTrack.offsetLeft - startX) * 1.5;
     });
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      galleryTrack.style.cursor = '';
-    });
-
-    // Auto-scroll gallery
-    let galleryPos = 0;
+    document.addEventListener('mouseup', () => { isDragging = false; galleryTrack.style.cursor = ''; });
     function autoScrollGallery() {
       if (!isDragging) {
         galleryPos += 0.4;
-        const maxScroll = galleryTrack.scrollWidth - galleryTrack.parentElement.offsetWidth;
-        if (galleryPos >= maxScroll) galleryPos = 0;
+        const max = galleryTrack.scrollWidth - galleryTrack.parentElement.offsetWidth;
+        if (galleryPos >= max) galleryPos = 0;
         galleryTrack.parentElement.scrollLeft = galleryPos;
       }
       requestAnimationFrame(autoScrollGallery);
@@ -2359,8 +970,7 @@
         if (id === '#') return;
         e.preventDefault();
         const target = document.querySelector(id);
-        if (!target) return;
-        target.scrollIntoView({ behavior: 'smooth' });
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
 
@@ -2368,26 +978,18 @@
     document.querySelectorAll('.btn-primary, .btn-secondary, .nav-reserve').forEach(btn => {
       btn.addEventListener('mousemove', e => {
         const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        btn.style.transform = `translate(${(e.clientX - rect.left - rect.width / 2) * 0.15}px, ${(e.clientY - rect.top - rect.height / 2) * 0.15}px)`;
       });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
 
-    // ─── COURSE ITEMS STAGGER ───
-    const courseItems = document.querySelectorAll('.course-item');
+    // ─── COURSE STAGGER ───
     const courseObserver = new IntersectionObserver(entries => {
       entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
+        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
       });
     }, { threshold: 0.1 });
-    courseItems.forEach(item => courseObserver.observe(item));
+    document.querySelectorAll('.course-item').forEach(item => courseObserver.observe(item));
   </script>
 </body>
-
 </html>
