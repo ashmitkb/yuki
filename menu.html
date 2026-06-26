@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>YUKI — Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@300;400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:    #0a0906;
+      --gold:     #c9a96e;
+      --gold-dim: #7a6440;
+      --ink:      #111009;
+    }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: var(--black);
+      font-family: 'Cormorant Garamond', serif;
+      -webkit-font-smoothing: antialiased;
+      touch-action: none;
+    }
+
+    /* NAV */
+    #top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; height: 52px;
+      background: linear-gradient(to bottom, rgba(10,9,6,0.92) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    #top-nav a { pointer-events: all; text-decoration: none; }
+    .nav-back {
+      font-family: 'Cinzel', serif; font-size: 0.58rem;
+      letter-spacing: 0.2em; color: var(--gold-dim); transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--gold); }
+    .nav-title { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.35em; color: var(--gold); }
+    .nav-counter { font-family: 'Raleway', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--gold-dim); min-width: 60px; text-align: right; }
+
+    /* STAGE */
+    #stage {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      perspective: 2400px;
+    }
+
+    /* BOOK */
+    #book {
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    /* Drop shadow under book */
+    #book-shadow {
+      position: absolute;
+      bottom: -20px; left: 8%; right: 8%;
+      height: 36px;
+      background: radial-gradient(ellipse, rgba(0,0,0,0.7) 0%, transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    /* Gold spine */
+    #spine {
+      position: absolute; top: 0; bottom: 0;
+      left: 50%; width: 3px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, transparent 0%, var(--gold-dim) 15%, var(--gold) 50%, var(--gold-dim) 85%, transparent 100%);
+      opacity: 0.6;
+      z-index: 10;
+      pointer-events: none;
+    }
+    #spine-glow {
+      position: absolute; top: 0; bottom: 0;
+      left: calc(50% - 8px); width: 16px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,0.08) 50%, transparent);
+      z-index: 9;
+      pointer-events: none;
+    }
+
+    /* PAGE */
+    .page {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 50%;
+      transform-style: preserve-3d;
+    }
+    .page-left  { left: 0;  transform-origin: right center; }
+    .page-right { right: 0; transform-origin: left center; }
+
+    /* Flip animations */
+    .flip-fwd-out  { animation: flipFwdOut  0.6s cubic-bezier(0.645,0.045,0.355,1) forwards; }
+    .flip-fwd-in   { animation: flipFwdIn   0.6s cubic-bezier(0.645,0.045,0.355,1) forwards; }
+    .flip-back-out { animation: flipBackOut 0.6s cubic-bezier(0.645,0.045,0.355,1) forwards; }
+    .flip-back-in  { animation: flipBackIn  0.6s cubic-bezier(0.645,0.045,0.355,1) forwards; }
+
+    @keyframes flipFwdOut  { 0%{transform:rotateY(0)} 100%{transform:rotateY(-180deg)} }
+    @keyframes flipFwdIn   { 0%{transform:rotateY(180deg)} 100%{transform:rotateY(0)} }
+    @keyframes flipBackOut { 0%{transform:rotateY(0)} 100%{transform:rotateY(180deg)} }
+    @keyframes flipBackIn  { 0%{transform:rotateY(-180deg)} 100%{transform:rotateY(0)} }
+
+    /* PAGE FACE */
+    .page-face {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      overflow: hidden;
+      border-radius: 1px;
+    }
+    .face-front { transform: rotateY(0deg); }
+    .face-back  { transform: rotateY(180deg); }
+
+    /* IMAGE FILL */
+    .page-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Cover face */
+    .cover-face {
+      background: var(--ink);
+      background-image: radial-gradient(ellipse at 40% 35%, rgba(201,169,110,0.1) 0%, transparent 55%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0; position: relative;
+    }
+    .cover-face::before {
+      content: ''; position: absolute; inset: 18px;
+      border: 1px solid rgba(201,169,110,0.22); pointer-events: none;
+    }
+    .cover-face::after {
+      content: ''; position: absolute; inset: 26px;
+      border: 1px solid rgba(201,169,110,0.07); pointer-events: none;
+    }
+    .cover-kanji {
+      font-size: clamp(4rem,12vw,7rem); color: rgba(201,169,110,0.1);
+      line-height: 1; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-58%); pointer-events: none; user-select: none;
+    }
+    .cover-logo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem,5vw,3rem); font-weight: 300;
+      letter-spacing: 0.45em; color: var(--gold);
+      position: relative; z-index: 1;
+    }
+    .cover-rule { width: 1px; height: 48px; background: linear-gradient(to bottom,transparent,var(--gold-dim),transparent); margin: 16px auto; position: relative; z-index: 1; }
+    .cover-sub { font-family: 'Raleway', sans-serif; font-size: clamp(0.5rem,1.2vw,0.65rem); letter-spacing: 0.3em; color: var(--gold-dim); text-transform: uppercase; position: relative; z-index: 1; }
+    .cover-year { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.22em; color: rgba(201,169,110,0.35); margin-top: 14px; position: relative; z-index: 1; }
+
+    /* Back cover */
+    .backcover-face {
+      background: var(--ink);
+      background-image: radial-gradient(ellipse at 60% 60%, rgba(201,169,110,0.07) 0%, transparent 55%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; position: relative;
+    }
+    .backcover-face::before { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(201,169,110,0.15); pointer-events: none; }
+    .backcover-logo { font-family: 'Cinzel', serif; font-size: 1.2rem; letter-spacing: 0.45em; color: rgba(201,169,110,0.45); }
+    .backcover-addr { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; font-style: italic; color: rgba(201,169,110,0.3); text-align: center; line-height: 2; }
+
+    /* Page edge shadows for realism */
+    .page-left  .face-front::after,
+    .page-right .face-front::after {
+      content: ''; position: absolute; top: 0; bottom: 0; pointer-events: none;
+    }
+    .page-left  .face-front::after { right: 0; width: 20px; background: linear-gradient(to left,  rgba(0,0,0,0.18),transparent); }
+    .page-right .face-front::after { left: 0;  width: 20px; background: linear-gradient(to right, rgba(0,0,0,0.18),transparent); }
+
+    /* CONTROLS */
+    #controls {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 20px; z-index: 200;
+    }
+    .ctrl-btn {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.3);
+      background: rgba(10,9,6,0.75);
+      color: var(--gold); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, background 0.3s, transform 0.15s;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .ctrl-btn:hover { border-color: var(--gold); background: rgba(201,169,110,0.12); }
+    .ctrl-btn:active { transform: scale(0.92); }
+    .ctrl-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+    .ctrl-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    #page-counter { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.25em; color: var(--gold-dim); min-width: 56px; text-align: center; }
+
+    /* Swipe hint */
+    #swipe-hint {
+      position: fixed; bottom: 78px; left: 50%; transform: translateX(-50%);
+      font-family: 'Raleway', sans-serif; font-size: 0.48rem; letter-spacing: 0.2em;
+      color: rgba(201,169,110,0.3); text-transform: uppercase; white-space: nowrap;
+      pointer-events: none; transition: opacity 1s;
+    }
+    #swipe-hint.gone { opacity: 0; }
+
+    /* Section label pills */
+    #section-pill {
+      position: fixed; bottom: 78px; right: 28px;
+      font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.18em;
+      color: rgba(201,169,110,0.3); text-transform: uppercase;
+      pointer-events: none; transition: opacity 0.4s;
+      text-align: right;
+    }
+
+    /* Loader */
+    #loader {
+      position: fixed; inset: 0; background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 14px; z-index: 999;
+      transition: opacity 0.7s;
+    }
+    #loader.fade { opacity: 0; pointer-events: none; }
+    .l-text { font-family: 'Cinzel', serif; font-size: 1.3rem; letter-spacing: 0.4em; color: var(--gold); }
+    .l-line { width: 0; height: 1px; background: var(--gold-dim); animation: ll 0.9s ease forwards 0.2s; }
+    @keyframes ll { to { width: 52px; } }
+    .l-sub { font-family: 'Raleway', sans-serif; font-size: 0.5rem; letter-spacing: 0.25em; color: var(--gold-dim); text-transform: uppercase; opacity: 0; animation: fu 0.5s ease forwards 0.65s; }
+    @keyframes fu { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flip-fwd-out,.flip-fwd-in,.flip-back-out,.flip-back-in { animation-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="l-text">YUKI</div>
+  <div class="l-line"></div>
+  <div class="l-sub">Menu</div>
+</div>
+
+<nav id="top-nav">
+  <a href="index.html" class="nav-back">← Back</a>
+  <span class="nav-title">YUKI</span>
+  <span class="nav-counter" id="nav-counter"></span>
+</nav>
+
+<div id="stage">
+  <div id="book">
+    <div id="book-shadow"></div>
+    <div id="spine-glow"></div>
+    <div id="spine"></div>
+  </div>
+</div>
+
+<div id="controls">
+  <button class="ctrl-btn" id="btn-prev" disabled aria-label="Previous">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <span id="page-counter">1 / 1</span>
+  <button class="ctrl-btn" id="btn-next" aria-label="Next">
+    <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+  </button>
+</div>
+
+<div id="swipe-hint">Swipe or use arrows to turn pages</div>
+<div id="section-pill"></div>
+
+<script>
+// ── PAGE IMAGES in order ───────────────────────────────────────────────────
+// Each spread = [leftImage, rightImage]
+// null = cover/back face
+const pages = [
+  { src: null,              label: 'Cover',    isCover: true  },
+  { src: 'bar_menu1.avif',  label: 'Bar Menu'                 },
+  { src: 'bar_menu2.avif',  label: 'Bar Menu'                 },
+  { src: 'bar_menu3.avif',  label: 'Bar Menu'                 },
+  { src: 'bar_menu4.avif',  label: 'Bar Menu'                 },
+  { src: 'bar_menu5.avif',  label: 'Bar Menu'                 },
+  { src: 'cold_drinks_menu.avif', label: 'Cold Drinks'        },
+  { src: 'menu1.avif',      label: 'Food Menu'                },
+  { src: 'menu2.avif',      label: 'Food Menu'                },
+  { src: 'menu3.avif',      label: 'Food Menu'                },
+  { src: 'menu4.avif',      label: 'Food Menu'                },
+  { src: 'menu5.avif',      label: 'Food Menu'                },
+  { src: 'menu6.avif',      label: 'Food Menu'                },
+  { src: 'menu7.avif',      label: 'Food Menu'                },
+  { src: null,              label: 'Back',     isBack: true   },
+];
+
+// Build spreads: pair consecutive pages as [left, right]
+// Spread 0: cover spread — left=blank dark, right=cover
+// Spread N: back — left=back, right=blank dark
+// Middle spreads: consecutive pairs
+const spreads = [];
+// First spread: left blank + cover
+spreads.push([pages[pages.length - 1], pages[0]]); // blank left, cover right... actually:
+// Rethink: cover is RIGHT of first spread, back is LEFT of last spread
+
+// Simpler: treat the page list as individual pages and pair them:
+// left pages = even indices, right pages = odd indices
+// Spread i shows pages[2i] on left and pages[2i+1] on right
+// Total spreads = ceil(pages.length / 2)
+// pages[0] = cover → right side of spread 0 (left is empty dark)
+// pages[last] = back → left side of last spread (right is empty dark)
+
+// Build flat page list with blanks to make even:
+const flat = [...pages];
+if (flat.length % 2 !== 0) flat.push({ src: null, isBack: true });
+
+// pair them: spread[i] = [flat[2i], flat[2i+1]]
+spreads.length = 0;
+for (let i = 0; i < flat.length; i += 2) {
+  spreads.push([flat[i], flat[i + 1]]);
+}
+
+// ── DOM SETUP ─────────────────────────────────────────────────────────────
+const book   = document.getElementById('book');
+const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+const counter = document.getElementById('page-counter');
+const navCtr  = document.getElementById('nav-counter');
+const pill    = document.getElementById('section-pill');
+
+let current = 0;
+let busy = false;
+
+function sizeBook() {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const maxW = Math.min(vw * 0.92, 1080);
+  const maxH = vh * 0.82;
+  // book is two pages side by side; each page aspect roughly 0.7 (portrait menu)
+  const pageW = Math.min(maxW / 2, maxH * 0.72);
+  const pageH = pageW / 0.7;
+  const finalH = Math.min(pageH, maxH);
+  const finalW = finalH * 0.7 * 2;
+  book.style.width  = finalW + 'px';
+  book.style.height = finalH + 'px';
+}
+sizeBook();
+window.addEventListener('resize', sizeBook);
+
+// ── BUILD FACE HTML ────────────────────────────────────────────────────────
+function buildFaceContent(pageData) {
+  if (!pageData || pageData.isCover) {
+    return `<div class="cover-face" style="width:100%;height:100%">
+      <div class="cover-kanji">雪</div>
+      <div class="cover-logo">YUKI</div>
+      <div class="cover-rule"></div>
+      <div class="cover-sub">Fine Dining · Bangalore</div>
+      <div class="cover-year">Est. 2024 · Lavelle Road</div>
+    </div>`;
+  }
+  if (pageData.isBack) {
+    return `<div class="backcover-face" style="width:100%;height:100%">
+      <div class="backcover-logo">YUKI</div>
+      <div class="backcover-addr">14, Lavelle Road<br>Bengaluru 560 001<br>Tue – Sun · 7pm – 11pm</div>
+    </div>`;
+  }
+  return `<img class="page-img" src="${pageData.src}" alt="${pageData.label}" draggable="false">`;
+}
+
+// ── RENDER ─────────────────────────────────────────────────────────────────
+function render(idx) {
+  book.querySelectorAll('.page').forEach(p => p.remove());
+
+  const [L, R] = spreads[idx];
+
+  const lp = document.createElement('div');
+  lp.className = 'page page-left';
+  lp.innerHTML = `
+    <div class="page-face face-front">${buildFaceContent(L)}</div>
+    <div class="page-face face-back">${buildFaceContent(R)}</div>`;
+
+  const rp = document.createElement('div');
+  rp.className = 'page page-right';
+  rp.innerHTML = `
+    <div class="page-face face-front">${buildFaceContent(R)}</div>
+    <div class="page-face face-back">${buildFaceContent(L)}</div>`;
+
+  book.appendChild(lp);
+  book.appendChild(rp);
+  updateUI(idx);
+}
+
+function updateUI(idx) {
+  counter.textContent   = `${idx + 1} / ${spreads.length}`;
+  navCtr.textContent    = `${idx + 1} / ${spreads.length}`;
+  btnPrev.disabled      = idx === 0;
+  btnNext.disabled      = idx === spreads.length - 1;
+
+  // section pill
+  const [L, R] = spreads[idx];
+  const label = (R && !R.isCover && !R.isBack) ? R.label : (L && !L.isCover && !L.isBack) ? L.label : '';
+  pill.textContent = label;
+}
+
+// ── FLIP FORWARD ───────────────────────────────────────────────────────────
+function flipForward() {
+  if (busy || current >= spreads.length - 1) return;
+  busy = true;
+
+  const nextIdx = current + 1;
+  const [nL, nR] = spreads[nextIdx];
+
+  // Animate: current right page flips over to become next left page
+  const flipPage = document.createElement('div');
+  flipPage.className = 'page page-right';
+  flipPage.style.zIndex = '30';
+  flipPage.innerHTML = `
+    <div class="page-face face-front">${buildFaceContent(spreads[current][1])}</div>
+    <div class="page-face face-back">${buildFaceContent(nL)}</div>`;
+  book.appendChild(flipPage);
+
+  // Pre-render next right page underneath
+  const nextRight = document.createElement('div');
+  nextRight.className = 'page page-right';
+  nextRight.style.zIndex = '1';
+  nextRight.innerHTML = `<div class="page-face face-front">${buildFaceContent(nR)}</div>`;
+  book.appendChild(nextRight);
+
+  requestAnimationFrame(() => flipPage.classList.add('flip-fwd-out'));
+
+  flipPage.addEventListener('animationend', () => {
+    current = nextIdx;
+    render(current);
+    busy = false;
+  }, { once: true });
+
+  document.getElementById('swipe-hint').classList.add('gone');
+}
+
+// ── FLIP BACKWARD ──────────────────────────────────────────────────────────
+function flipBackward() {
+  if (busy || current <= 0) return;
+  busy = true;
+
+  const prevIdx = current - 1;
+  const [pL, pR] = spreads[prevIdx];
+
+  const flipPage = document.createElement('div');
+  flipPage.className = 'page page-left';
+  flipPage.style.zIndex = '30';
+  flipPage.innerHTML = `
+    <div class="page-face face-front">${buildFaceContent(spreads[current][0])}</div>
+    <div class="page-face face-back">${buildFaceContent(pR)}</div>`;
+  book.appendChild(flipPage);
+
+  const prevLeft = document.createElement('div');
+  prevLeft.className = 'page page-left';
+  prevLeft.style.zIndex = '1';
+  prevLeft.innerHTML = `<div class="page-face face-front">${buildFaceContent(pL)}</div>`;
+  book.appendChild(prevLeft);
+
+  requestAnimationFrame(() => flipPage.classList.add('flip-back-out'));
+
+  flipPage.addEventListener('animationend', () => {
+    current = prevIdx;
+    render(current);
+    busy = false;
+  }, { once: true });
+}
+
+// ── EVENTS ─────────────────────────────────────────────────────────────────
+btnNext.addEventListener('click', flipForward);
+btnPrev.addEventListener('click', flipBackward);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') flipForward();
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   flipBackward();
+});
+
+// Touch swipe
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 48) { dx < 0 ? flipForward() : flipBackward(); }
+}, { passive: true });
+
+// Click left/right half of screen
+document.getElementById('stage').addEventListener('click', e => {
+  const mid = window.innerWidth / 2;
+  if (e.clientX > mid + 80) flipForward();
+  else if (e.clientX < mid - 80) flipBackward();
+});
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+render(0);
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('fade');
+    setTimeout(() => document.getElementById('loader').remove(), 700);
+  }, 800);
+});
+</script>
+</body>
+</html>
