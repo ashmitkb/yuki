@@ -38,7 +38,8 @@
     <a href="#menu" class="mob-link"><span>Menu</span><span class="mob-num">02</span></a>
     <a href="#experience" class="mob-link"><span>Experience</span><span class="mob-num">03</span></a>
     <a href="#tasting" class="mob-link"><span>Tasting</span><span class="mob-num">04</span></a>
-    <a href="#chef" class="mob-link"><span>Chef</span><span class="mob-num">05</span></a>
+    <a href="#chef" class="mob-link"><span>Founders</span><span class="mob-num">05</span></a>
+    <a href="menu.html" class="mob-link"><span>Full Menu</span><span class="mob-num">06</span></a>
     <div class="mob-footer">
       <a href="#reserve" class="mob-reserve">Reserve a Table →</a>
       <p class="mob-contact">+91 800 123 4567 · 14 Lavelle Road, Bengaluru</p>
@@ -55,13 +56,13 @@
              ======================================== -->
         <img src="logo.png" alt="YUKI logo">
       </span>
-      YUKI
     </a>
     <div class="nav-links">
       <a href="#philosophy">Philosophy</a>
       <a href="#menu">Menu</a>
       <a href="#experience">Experience</a>
-      <a href="#chef">Chef</a>
+      <a href="#chef">Founders</a>
+      <a href="menu.html">Full Menu</a>
     </div>
     <a href="#reserve" class="nav-reserve">Reserve →</a>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -288,30 +289,24 @@
     </div>
   </section>
 
-  <!-- ─── CHEF ─── -->
+  <!-- ─── FOUNDERS ─── -->
   <section id="chef">
     <div class="chef-visual reveal-left">
       <div class="chef-image">
-        <!-- ========================================
-             CHEF PORTRAIT IMAGE
-             To change: replace src below
-             Current file: public/menu4.avif
-             You can also use menu5.avif, menu6.avif, menu7.avif
-             ======================================== -->
-        <img src="menu4.avif" alt="Chef Aiko Tanaka" loading="lazy">
+        <img src="menu4.avif" alt="Sai Shivani &amp; Priyesh Busetty" loading="lazy">
       </div>
       <div class="chef-accent-line"></div>
-      <div class="chef-accent-text">Executive Chef</div>
+      <div class="chef-accent-text">Co-Founders</div>
     </div>
     <div class="chef-content">
-      <div class="section-label reveal">The Culinary Mind</div>
-      <h2 class="chef-name reveal delay-1">Chef<br>Aiko Tanaka</h2>
-      <p class="chef-title reveal delay-2">Executive Chef & Founder</p>
-      <p class="chef-bio reveal delay-3">Trained at Sukiyabashi Jiro in Tokyo and honed in the kitchens of Copenhagen and Paris, Chef Aiko brought her reverence for Japanese technique and her love for Indian spice to Bangalore in 2024. YUKI is her manifesto — a restaurant that refuses to choose between two worlds.</p>
+      <div class="section-label reveal">The Founders</div>
+      <h2 class="chef-name reveal delay-1">Sai Shivani &amp;<br>Priyesh Busetty</h2>
+      <p class="chef-title reveal delay-2">Co-Founders, YUKI</p>
+      <p class="chef-bio reveal delay-3">YUKI was born from a shared belief that dining should be more than just food — it should be an atmosphere, a feeling, a cultural escape. Sai Shivani and Priyesh Busetty built YUKI on the idea that consistency in flavour, service, and experience is what earns a permanent place in a guest's memory. What started as a single vision on Lavelle Road has grown into one of Bangalore's most beloved culinary destinations.</p>
       <div class="chef-awards reveal delay-4">
         <div class="award-item"><div class="award-icon"></div><span class="award-text">Best New Restaurant — Times Food Awards 2025</span></div>
         <div class="award-item"><div class="award-icon"></div><span class="award-text">Asia's 50 Best — One to Watch 2025</span></div>
-        <div class="award-item"><div class="award-icon"></div><span class="award-text">Forbes 30 Under 30 — Food & Beverage 2024</span></div>
+        <div class="award-item"><div class="award-icon"></div><span class="award-text">Forbes 30 Under 30 — Food &amp; Beverage 2024</span></div>
       </div>
     </div>
   </section>
@@ -337,7 +332,7 @@
         <div class="footer-logo">YUKI</div>
         <p class="footer-tagline">Where Japanese precision meets the soul of Bangalore.</p>
       </div>
-      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#philosophy">Our Philosophy</a></li><li><a href="#menu">The Menu</a></li><li><a href="#experience">Experience</a></li><li><a href="#chef">Our Chef</a></li></ul></div>
+      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#philosophy">Our Philosophy</a></li><li><a href="#menu">The Menu</a></li><li><a href="#experience">Experience</a></li><li><a href="#chef">Our Founders</a></li></ul></div>
       <div class="footer-col"><h4>Visit</h4><ul><li><a href="#">14, Lavelle Road</a></li><li><a href="#">Bengaluru 560001</a></li><li><a href="#">Tue–Sun, 7pm–11pm</a></li><li><a href="#">Closed Mondays</a></li></ul></div>
       <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Press Enquiries</a></li><li><a href="#">Gift Vouchers</a></li><li><a href="#">Private Events</a></li></ul></div>
     </div>
@@ -524,5 +519,59 @@
 
   <script src="assets/js/shared.js"></script>
   <script src="assets/js/index.js"></script>
+  <!-- Hamburger fallback: works even if shared.js is missing or nav class differs -->
+  <script>
+    (function() {
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var nav = document.getElementById('nav');
+      if (!hamburger || !mobileMenu) return;
+
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = mobileMenu.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+        // animate ham lines to X
+        var lines = hamburger.querySelectorAll('.ham-line');
+        if (isOpen) {
+          lines[0].style.transform = 'translateY(8px) rotate(45deg)';
+          lines[1].style.opacity = '0';
+          lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+        } else {
+          lines[0].style.transform = '';
+          lines[1].style.opacity = '';
+          lines[2].style.transform = '';
+        }
+      });
+
+      // Close on link click
+      mobileMenu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+          var lines = hamburger.querySelectorAll('.ham-line');
+          lines[0].style.transform = '';
+          lines[1].style.opacity = '';
+          lines[2].style.transform = '';
+        });
+      });
+
+      // Close on outside click
+      document.addEventListener('click', function(e) {
+        if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && e.target !== hamburger) {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+          var lines = hamburger.querySelectorAll('.ham-line');
+          lines[0].style.transform = '';
+          lines[1].style.opacity = '';
+          lines[2].style.transform = '';
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
