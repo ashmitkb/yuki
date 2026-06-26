@@ -1,0 +1,912 @@
+/* ══════════════════════════════════════════════════
+   YUKI — FINE DINING, BANGALORE
+   MENU PAGE SPECIFIC STYLES (menu.css)
+   ══════════════════════════════════════════════════ */
+
+/* ─── HERO ─── */
+.menu-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  padding: 0 48px 80px;
+}
+
+.menu-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../../menu2.avif') center 30% / cover no-repeat;
+}
+
+.menu-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(10, 10, 8, 1) 0%, rgba(10, 10, 8, 0.7) 40%, rgba(10, 10, 8, 0.3) 100%),
+    linear-gradient(to right, rgba(10, 8, 4, 0.5) 0%, transparent 60%);
+}
+
+.menu-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.menu-hero-tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.menu-hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  line-height: 0.9;
+  margin-bottom: 28px;
+}
+
+.menu-hero-sub {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.5);
+}
+
+.hero-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ─── SEASON BAR ─── */
+.season-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  border-top: 1px solid rgba(201, 169, 110, 0.1);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+  background: rgba(201, 169, 110, 0.02);
+}
+
+.season-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--cream);
+}
+
+.season-date {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+}
+
+.season-note {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: rgba(245, 240, 232, 0.3);
+  max-width: 320px;
+  text-align: right;
+}
+
+/* ─── PRICING BLOCK ─── */
+.pricing-block {
+  display: flex;
+  gap: 2px;
+  margin: 80px 48px;
+}
+
+.pricing-card {
+  flex: 1;
+  padding: 48px 40px;
+  border: 1px solid rgba(201, 169, 110, 0.12);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s, background-color 0.4s;
+  background: rgba(10, 10, 8, 0.3);
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  transform: scaleX(0);
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.pricing-card:hover {
+  border-color: rgba(201, 169, 110, 0.3);
+}
+
+.pricing-card:hover::before {
+  transform: scaleX(1);
+}
+
+.pricing-card.featured {
+  background: rgba(201, 169, 110, 0.04);
+  border-color: rgba(201, 169, 110, 0.25);
+}
+
+.pricing-card.featured::before {
+  transform: scaleX(1);
+}
+
+.pricing-tag {
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.pricing-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+.pricing-courses {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--gold-dim);
+  margin-bottom: 32px;
+}
+
+.pricing-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.pricing-per {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+  margin-top: 6px;
+}
+
+.pricing-includes {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(201, 169, 110, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pricing-include-item {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: rgba(245, 240, 232, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricing-include-item::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--gold-dim);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ─── SECTION HEADER ─── */
+.section-header {
+  padding: 0 48px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.section-note {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: rgba(245, 240, 232, 0.3);
+  max-width: 260px;
+  text-align: right;
+  line-height: 1.9;
+}
+
+/* ─── COURSES LISTING ─── */
+.courses-section {
+  padding: 80px 0;
+}
+
+.courses-list {
+  padding: 0 48px;
+}
+
+.course-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 140px;
+  align-items: start;
+  gap: 48px;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.07);
+  position: relative;
+  overflow: hidden;
+  transition: padding-left 0.4s var(--ease-out-expo), opacity 0.4s, transform 0.4s;
+  cursor: pointer; /* Interactive courses */
+}
+
+.course-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(201, 169, 110, 0.025);
+  transform: translateX(-101%);
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.course-row:hover::before {
+  transform: translateX(0);
+}
+
+.course-row:hover {
+  padding-left: 20px;
+}
+
+.course-row:first-child {
+  border-top: 1px solid rgba(201, 169, 110, 0.07);
+}
+
+.course-row.filtered-out {
+  opacity: 0;
+  transform: scaleY(0);
+  padding: 0;
+  margin: 0;
+  border-bottom: none;
+  height: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.course-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--gold-dim);
+  text-align: right;
+  padding-top: 4px;
+}
+
+.course-body {
+  position: relative;
+  z-index: 1;
+}
+
+.course-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 6px;
+  line-height: 1.2;
+  transition: color 0.3s;
+}
+.course-row:hover .course-name {
+  color: var(--gold-light);
+}
+
+.course-subtitle {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.course-desc {
+  font-size: 0.78rem;
+  line-height: 1.9;
+  color: rgba(245, 240, 232, 0.4);
+  max-width: 560px;
+  letter-spacing: 0.04em;
+}
+
+.course-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  padding: 4px 10px;
+  color: var(--gold-dim);
+}
+
+.tag.vg {
+  border-color: rgba(100, 180, 100, 0.25);
+  color: rgba(100, 180, 100, 0.7);
+}
+
+.tag.gf {
+  border-color: rgba(201, 169, 110, 0.25);
+  color: var(--gold-dim);
+}
+
+.tag.df {
+  border-color: rgba(150, 150, 200, 0.25);
+  color: rgba(150, 150, 200, 0.7);
+}
+
+.tag.sp {
+  border-color: rgba(200, 100, 100, 0.25);
+  color: rgba(200, 100, 100, 0.6);
+}
+
+.course-price-col {
+  text-align: right;
+  position: relative;
+  z-index: 1;
+  padding-top: 4px;
+}
+
+.course-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--gold);
+  display: block;
+}
+
+.course-wine {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--gold-dim);
+  margin-top: 8px;
+  display: block;
+  line-height: 1.8;
+}
+
+/* ─── WINE PAIRING ─── */
+.wine-section {
+  padding: 80px 0;
+  background: rgba(201, 169, 110, 0.02);
+  border-top: 1px solid rgba(201, 169, 110, 0.08);
+}
+
+.wine-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 0 48px;
+  margin-top: 48px;
+}
+
+.wine-card {
+  padding: 48px 40px;
+  border: 1px solid rgba(201, 169, 110, 0.1);
+  transition: border-color 0.4s;
+  position: relative;
+  background: rgba(10, 10, 8, 0.2);
+}
+
+.wine-card:hover {
+  border-color: rgba(201, 169, 110, 0.25);
+}
+
+.wine-card-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.wine-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.wine-card-region {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--gold-dim);
+  margin-bottom: 20px;
+}
+
+.wine-card-desc {
+  font-size: 0.75rem;
+  line-height: 1.9;
+  color: rgba(245, 240, 232, 0.4);
+}
+
+.wine-card-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin-top: 28px;
+}
+
+.wine-card-per {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--gold-dim);
+  display: block;
+  margin-top: 4px;
+}
+
+/* ─── DIETARY KEY ─── */
+.dietary-section {
+  padding: 60px 48px;
+  border-top: 1px solid rgba(201, 169, 110, 0.08);
+}
+
+.dietary-grid {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.dietary-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dietary-tag-large {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  padding: 6px 14px;
+  color: var(--gold-dim);
+}
+
+.dietary-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(245, 240, 232, 0.4);
+}
+
+/* ─── ALLERGEN NOTICE ─── */
+.allergen-notice {
+  padding: 40px 48px;
+  margin: 0 48px 80px;
+  border: 1px solid rgba(201, 169, 110, 0.1);
+  background: rgba(201, 169, 110, 0.02);
+}
+
+.allergen-notice p {
+  font-size: 0.72rem;
+  line-height: 1.9;
+  color: rgba(245, 240, 232, 0.35);
+  letter-spacing: 0.05em;
+}
+
+.allergen-notice strong {
+  color: var(--gold-dim);
+  font-weight: 400;
+}
+
+/* ─── CTA ─── */
+.menu-cta {
+  text-align: center;
+  padding: 120px 48px;
+  background: linear-gradient(135deg, #0f1a0d 0%, #1a0f0a 50%, #0a0f1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-cta-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201, 169, 110, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 169, 110, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.cta-heading {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+
+.cta-body {
+  font-size: 0.8rem;
+  line-height: 2;
+  color: rgba(245, 240, 232, 0.4);
+  margin-bottom: 48px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── MENU MINI FOOTER ─── */
+footer {
+  padding: 60px 48px 40px;
+  border-top: 1px solid rgba(201, 169, 110, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.footer-info {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: rgba(245, 240, 232, 0.3);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.footer-copy {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(245, 240, 232, 0.2);
+}
+
+/* ══════════════════════════════════════════════════
+   INTERACTIVE MENU ELEMENTS (FILTERS & DISH DRAWER)
+   ══════════════════════════════════════════════════ */
+
+/* elegant filter bar styles */
+.filter-bar-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+  padding: 0 48px;
+}
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  color: rgba(245, 240, 232, 0.6);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+  font-family: inherit;
+}
+.filter-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+.filter-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(201, 169, 110, 0.15);
+}
+
+/* Dish Preview Drawer Details */
+#dish-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9550;
+  background: rgba(10, 10, 8, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+#dish-drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#dish-drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 460px;
+  max-width: 100%;
+  z-index: 9560;
+  background: rgba(15, 15, 12, 0.98);
+  border-left: 1px solid rgba(201, 169, 110, 0.15);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.9);
+  transform: translateX(100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+#dish-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+}
+.drawer-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--gold-dim);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.drawer-close:hover {
+  color: var(--gold);
+}
+
+.drawer-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+.drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) transparent;
+}
+.drawer-content::-webkit-scrollbar {
+  width: 4px;
+}
+.drawer-content::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+  border-radius: 2px;
+}
+
+.drawer-img-container {
+  width: 100%;
+  aspect-ratio: 16/11;
+  overflow: hidden;
+  background: var(--ink);
+  position: relative;
+}
+.drawer-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.drawer-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,15,12,1) 0%, transparent 40%);
+}
+
+.drawer-body {
+  padding: 30px 40px 40px;
+}
+
+.drawer-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.drawer-subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.drawer-desc {
+  font-size: 0.8rem;
+  line-height: 1.9;
+  color: rgba(245, 240, 232, 0.6);
+  margin-bottom: 30px;
+  letter-spacing: 0.02em;
+}
+
+.drawer-meta-section {
+  border-top: 1px solid rgba(201, 169, 110, 0.08);
+  padding: 20px 0;
+}
+.drawer-meta-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+.drawer-meta-text {
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: rgba(245, 240, 232, 0.45);
+}
+.drawer-wine-meta {
+  color: var(--gold-light);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+}
+
+.drawer-tag-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* ══════════════════════════════════════════════════
+   MOBILE OVERRIDES (menu.css)
+   ══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .nav-reserve {
+    display: none;
+  }
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .menu-hero {
+    min-height: 50vh;
+    padding: 0 24px 56px;
+  }
+
+  .season-bar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 20px 24px;
+  }
+  .season-note {
+    text-align: left;
+  }
+
+  .pricing-block {
+    flex-direction: column;
+    margin: 40px 24px;
+    gap: 16px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0 24px;
+  }
+  .section-note {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .filter-bar-container {
+    padding: 0 24px;
+    margin-bottom: 36px;
+    gap: 8px;
+  }
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 0.55rem;
+  }
+
+  .courses-list {
+    padding: 0 24px;
+  }
+  .course-row {
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    padding: 28px 0;
+  }
+  .course-price-col {
+    display: none;
+  }
+  .course-row:hover {
+    padding-left: 0;
+  }
+
+  .wine-grid {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+  }
+  .wine-card {
+    padding: 32px 24px;
+  }
+
+  .dietary-section {
+    padding: 40px 24px;
+  }
+  .dietary-grid {
+    gap: 20px;
+  }
+
+  .allergen-notice {
+    margin: 0 24px 48px;
+    padding: 28px 24px;
+  }
+
+  .menu-cta {
+    padding: 80px 24px;
+  }
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .cta-buttons a {
+    width: 100%;
+    text-align: center;
+  }
+
+  footer {
+    padding: 40px 24px 32px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
