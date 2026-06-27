@@ -19,6 +19,130 @@
   
   <link rel="stylesheet" href="assets/css/shared.css">
   <link rel="stylesheet" href="assets/css/index.css">
+
+  <!-- ─── MOBILE NAV OVERRIDE CSS ─── -->
+  <style>
+    /* Hamburger button */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 4px;
+    }
+    .ham-line {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: #c9a96e;
+      transition: transform 0.35s ease, opacity 0.25s ease;
+      transform-origin: center;
+    }
+    /* Animated X state */
+    .nav-hamburger.open .ham-line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open .ham-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Mobile menu drawer */
+    #mobile-menu {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(320px, 85vw);
+      height: 100vh;
+      background: #0a0906;
+      border-left: 1px solid rgba(201,169,110,0.15);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 40px 40px;
+      gap: 0;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      visibility: hidden;
+    }
+    #mobile-menu.open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    /* Backdrop */
+    #mobile-menu::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      right: min(320px, 85vw);
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+    #mobile-menu.open::before { opacity: 1; pointer-events: all; }
+
+    .mob-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+      text-decoration: none;
+      color: #f2ead8;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      transition: color 0.25s;
+    }
+    .mob-link:hover { color: #c9a96e; }
+    .mob-num {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      color: #7a6440;
+    }
+    .mob-footer {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mob-reserve {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: #0a0906;
+      background: #c9a96e;
+      padding: 14px 24px;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .mob-reserve:hover { background: #b8924f; }
+    .mob-contact {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      color: #7a6440;
+      text-align: center;
+    }
+
+    /* Show hamburger on mobile, hide desktop nav links */
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex !important; }
+      .nav-links { display: none !important; }
+    }
+    @media (min-width: 769px) {
+      .nav-hamburger { display: none !important; }
+      #mobile-menu { display: none !important; }
+    }
+  </style>
 </head>
 
 <body>
@@ -519,59 +643,6 @@
 
   <script src="assets/js/shared.js"></script>
   <script src="assets/js/index.js"></script>
-  <!-- Hamburger fallback: works even if shared.js is missing or nav class differs -->
-  <script>
-    (function() {
-      var hamburger = document.getElementById('hamburger');
-      var mobileMenu = document.getElementById('mobile-menu');
-      var nav = document.getElementById('nav');
-      if (!hamburger || !mobileMenu) return;
-
-      hamburger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var isOpen = mobileMenu.classList.toggle('open');
-        hamburger.setAttribute('aria-expanded', isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-        // animate ham lines to X
-        var lines = hamburger.querySelectorAll('.ham-line');
-        if (isOpen) {
-          lines[0].style.transform = 'translateY(8px) rotate(45deg)';
-          lines[1].style.opacity = '0';
-          lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
-        } else {
-          lines[0].style.transform = '';
-          lines[1].style.opacity = '';
-          lines[2].style.transform = '';
-        }
-      });
-
-      // Close on link click
-      mobileMenu.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-          mobileMenu.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-          var lines = hamburger.querySelectorAll('.ham-line');
-          lines[0].style.transform = '';
-          lines[1].style.opacity = '';
-          lines[2].style.transform = '';
-        });
-      });
-
-      // Close on outside click
-      document.addEventListener('click', function(e) {
-        if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && e.target !== hamburger) {
-          mobileMenu.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-          var lines = hamburger.querySelectorAll('.ham-line');
-          lines[0].style.transform = '';
-          lines[1].style.opacity = '';
-          lines[2].style.transform = '';
-        }
-      });
-    })();
-  </script>
 
 </body>
 </html>
